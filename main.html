@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cogni Linga | Strona główna</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <nav id="page-nav">
+        <div id="nav-panel">
+            <i class="fas fa-bars"></i>
+        </div>
+        <h1 class="cogni">Cogni linga</h1>
+        <div id="account-panel">
+            <i class="fas fa-angle-down"></i>
+            <div id="account-panel-menu">
+                <a href="">Ustawienia</a>
+                <a href="">Wyloguj się</a>
+            </div>
+        </div>
+    </nav>
+    <nav id="aside-nav">
+        <ul>
+            <li title="Nowe fiszki">
+                <div class="icon"><i class="fas fa-plus"></i></div>
+                <div class="name">Dodaj</div>
+            </li>
+            <li title="Szukaj">
+                <div class="icon"><i class="fas fa-search"></i></div>
+                <div class="name">Szukaj</div>
+            </li>
+            <li title="Twoje fiszki">
+                <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <div class="name">Twoje fiszki</div>
+            </li>
+            <li title="Wszystkie fiszki">
+                <div class="icon"><i class="fas fa-th-list"></i></div>
+                <div class="name">Wszystkie fiszki</div>
+            </li>
+        </ul>
+    </nav>
+    <section>
+
+        <section id="app-panel"">
+            <article>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed aut, deserunt enim, perspiciatis ab praesentium cupiditate atque ut qui fuga dolore modi aliquid. Excepturi recusandae nostrum odio, quas cumque quos.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro ut, laboriosam veniam distinctio facere maiores non enim doloremque, aliquam perspiciatis aspernatur unde ullam hic sint esse nobis, vero id corporis.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, possimus sit vero earum sint omnis, voluptatum, repellendus neque fugiat mollitia repellat eaque natus iure temporibus ut ex beatae sed facere.    </p>
+            </article>
+        </section>
+    </section>
+
+    <script src="https://kit.fontawesome.com/72c2c3d450.js" crossorigin="anonymous"></script>
+    <script>
+        const accountPanel = document.querySelector("#account-panel");
+        const mainSection = document.querySelector("body > section");
+        const navpanel = document.querySelector("#nav-panel");
+        const asideNav = document.querySelector("#aside-nav");
+
+        accountPanel.addEventListener('click', () => {
+            if (accountPanel.classList.contains('active')) {
+                accountPanel.classList.remove('active');
+            } else {
+                accountPanel.classList.add('active');
+            }
+        });
+
+        navpanel.addEventListener('click', () => {
+            asideNav.classList.add('visible');
+        })
+
+        mainSection.addEventListener('click', () => {
+            accountPanel.classList.remove('active');
+            asideNav.classList.remove('visible');
+        })
+    </script>
+</body>
+
+</html>
