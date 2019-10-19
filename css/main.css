@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 :root {
@@ -75,6 +76,55 @@ body {
     right: 20px;
     font-size: 1.4rem;
     color: var(--white-color);
+    cursor: pointer;
+}
+
+#page-nav #account-panel i {
+    transition: .3s;
+}
+
+#page-nav #account-panel.active i {
+    transform: rotate(180deg);
+}
+
+#page-nav #account-panel #account-panel-menu {
+    position: absolute;
+    visibility: hidden;
+    top: 30px;
+    right: -10px;
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    opacity: 0;
+    padding: 10px 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+    transition: .3s;
+}
+
+#page-nav #account-panel #account-panel-menu::after{
+    content: '';
+    position: absolute;
+    transform: translateY(-100%);
+    top:0;
+    right: 10px;
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 5px solid var(--white-color);
+}
+
+#page-nav #account-panel #account-panel-menu a{
+    display: block;
+    font-size: 1rem;
+    padding: 5px 10px;
+    width: 130px;
+    text-align:center;
+}
+
+#page-nav #account-panel.active #account-panel-menu {
+    visibility: visible;
+    opacity: 1;
 }
 
 #main-offer {
@@ -161,7 +211,7 @@ body {
     transform: translateX(0);
 }
 
-body > section > :first-child {
+body > section > section > :first-child {
     max-width: 1400px;
     margin: auto;
     padding-left: 45px;
@@ -178,9 +228,17 @@ body > section > :first-child {
 a{
     color:inherit;
     text-decoration: none;
+    transition: text-shadow .3s;
+}
+
+a:hover {
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
 }
 
 #article-register-btn {
     display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
     cursor: pointer;
 }
