@@ -8,7 +8,7 @@
 }
 
 :root {
-    --primary-color: #373F51;
+    --first-color: #373F51;
     --second-color: #A9BCD0;
     --third-color: #DCE9F6;
     --fourth-color: #f9f9fb;
@@ -16,7 +16,7 @@
 }
 
 html {
-    color: var(--primary-color);
+    color: var(--first-color);
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
 }
@@ -54,7 +54,7 @@ html {
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--first-color);
 }
 
 #page-nav {
@@ -63,7 +63,7 @@ body {
     top: 0;
     left:0;
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--first-color);
     color: var(--white-color);
     display: flex;
     justify-content: center;
@@ -89,8 +89,8 @@ body {
     display: flex;
     flex-direction: column;
     padding: 50px 5px;
-    background-color: var(--primary-color);
-    color: var(--second-color);
+    background-color: var(--first-color);
+    color: var(--white-color);
     transform: translateX(-150px);
     transition: .3s;
 }
@@ -113,7 +113,8 @@ body {
 }
 
 #aside-nav ul li:hover {
-    color: var(--white-color);
+    color: var(--third-color);
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4);
 }
 
 #aside-nav ul li .icon {
@@ -145,7 +146,7 @@ body {
     visibility: hidden;
     top: 30px;
     right: -10px;
-    color: var(--primary-color);
+    color: var(--first-color);
     background-color: var(--white-color);
     opacity: 0;
     padding: 10px 10px;
@@ -274,7 +275,7 @@ body > section > section > :first-child {
 
 #cogni-functions {
     color: var(--white-color);
-    background-color: var(--primary-color);
+    background-color: var(--first-color);
     padding-top: 40px;
     padding-bottom: 60px;
 }
@@ -297,19 +298,35 @@ a:hover {
     cursor: pointer;
 }
 
-#app-panel {
-    background-color: var(--third-color);
+#app-panel, #login-form {
+    background-color: var(--second-color);
     min-height: 94vh;
     margin: auto;
-    padding: 60px 45px 145px;
+    padding: 60px 45px;
     display: flex;
     flex-direction: column;
+}
+
+#login-form {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-form form input {
+    display: block;
 }
 
 #app-panel #recent {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: ; */
+    padding-top: 10px;
 }
 
 .flash-prev {
@@ -320,9 +337,7 @@ a:hover {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
     width: 100%;
-    /* max-width: 500px; */
-    flex-basis: calc(31%);
-    /* margin-top: 20px; */
+    flex-basis: 31%;
     margin-bottom: 30px;
     
 }
@@ -341,7 +356,6 @@ a:hover {
     overflow: hidden;
     border-radius: 5px;
     margin-right: 5px;
-    /* border: 2px solid var(--second-color); */
 }
 
 .flash-prev .flash-img img {
@@ -363,10 +377,6 @@ a:hover {
     margin-bottom: 5px;
 }
 
-.flash-prev .flash-description .flash-count {
-
-}
-
 .flash-prev .flash-description .flash-autor {
     height: 50px;
 }
@@ -375,14 +385,13 @@ a:hover {
     height: 100%;
 }
 
-.flash-prev .flash-description .flash-autor span {
-
-}
-
 h2 {
     text-transform: uppercase;
     font-weight: 300;
-    margin-bottom: 20px;
+    color: var(--white-color);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 h2.load-more {
@@ -401,7 +410,6 @@ h2.load-more .icon {
     cursor: pointer;
     font-size: .9rem;
     left:0;
-    /* font-weight: 300; */
     right: 0;
     margin: auto;
     transform: translateY(100%);
@@ -418,4 +426,50 @@ h2.load-more:hover {
 
 #app-panel article section {
     margin-bottom: 30px;
+}
+
+#categories, #ranking {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+#categories .category-prev {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#ranking {
+    flex-wrap: nowrap;
+}
+
+#ranking .user-prev {
+    padding: 10px 20px 10px 10px;
+    display: flex;
+}
+
+#ranking .user-prev .left {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+#ranking .user-prev .right {
+    display: flex;
+    flex-direction: column;
+}
+
+#categories, #ranking {
+    padding-bottom: 30px;
+}
+
+.user-prev, .category-prev {
+    background-color: var(--fourth-color);
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
 }
