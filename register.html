@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cogni Linga | Logowanie</title>
+    <title>Cogni Linga | Rejestracja</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -24,14 +24,22 @@
         <section id="login-form">
             <form action="">
                 <label>
-                    Login:
+                    Nazwa użytkownika:
                     <input type="text" name="username" required>
+                </label>
+                <label>
+                    Kod rejestracyjny:
+                    <input type="text" name="register-code">
                 </label>
                 <label>
                     Hasło:
                     <input type="password" name="password" required>
                 </label>
-                <input type="submit" value="Zaloguj się">
+                <label>
+                    Powtórz hasło:
+                    <input type="password" name="password-confirm" required>
+                </label>
+                <input type="submit" value="Zarejestruj się">
             </form>
         </section>
     </section>
