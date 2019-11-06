@@ -429,6 +429,10 @@ h2.load-more:hover {
     margin-bottom: 30px;
 }
 
+#app-panel {
+    min-height: calc(100vh - 48px);
+}
+
 #categories, #ranking {
     display: flex;
     justify-content: space-between;
