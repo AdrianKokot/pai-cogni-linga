@@ -21,6 +21,10 @@ html {
     font-family: 'Montserrat', sans-serif;
 }
 
+textarea {
+    resize: none;
+}
+
 .cogni {
     font-size: 1.4rem;
     letter-spacing: .15rem;
@@ -479,25 +483,35 @@ h2.load-more:hover {
     margin: 10px;
 }
 
-input {
+input,textarea,select,option {
     font-size: 1rem;
     font-family: inherit !important;
+    border: 1px solid #a9a9a9;
+    border-radius: 3px;
 }
 
-#login-form input {
+#login-form input, #create-study-set-form input, #create-study-set-form select, #create-study-set-form select option, #create-study-set-form textarea {
     padding: 10px;
 }
 
-#login-form label {
+#login-from label, #create-study-set-form label {
     font-size: 1.2rem;
-    margin-bottom: 10px;
-    min-width: 260px;
-    flex-basis: 80%;
     color: var(--white-color);
     text-shadow: 0px 0px 5px rgba(0,0,0.3);
 }
 
-#login-form label input {
+#create-study-set-form label {
+    margin-bottom: 20px;
+    display: block;
+}
+
+#login-form label {
+    margin-bottom: 10px;
+    min-width: 260px;
+    flex-basis: 80%;
+}
+
+#login-form label input, #create-study-set-form label input, #create-study-set-form textarea, #create-study-set-form select, #create-study-set-form select option {
     margin-top: 5px;
     width: 100%;
     border: 1px solid rgba(55, 63, 81, 0.6);
@@ -508,7 +522,7 @@ input[type="submit"] {
     border-style: solid;
 }
 
-#login-form input[type="submit"] {
+#login-form input[type="submit"], #create-study-set-form input[type="submit"] {
     margin-top: 10px;
     min-width: 260px;
     flex-basis: 80%;
@@ -519,8 +533,99 @@ input[type="submit"] {
     transition: .3s;
 }
 
-#login-form input[type="submit"]:hover {
+#login-form input[type="submit"]:hover, #create-study-set-form input[type="submit"]:hover {
     background-color: transparent;
     color: var(--first-color);
     font-weight: 800;
+}
+
+form .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+form .form-group > * {
+    margin-right: 15px;
+    margin-left: 15px;
+    flex-basis: 50%;
+}
+
+#create-study-set-from textarea {
+    height: 79px;
+}
+
+.new-flashcard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white-color);
+    border-radius: 3px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.new-flashcard:focus {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+.new-flashcard > input {
+    flex-basis: 50%;
+    margin: 20px;
+    background-color: transparent;
+    border-top:none;
+    border-right: none;
+    transition: border .2s;
+}
+
+.new-flashcard > input:focus {
+    outline:none;
+    border-color: var(--first-color);
+}
+
+.new-flashcard .counter {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-left: 20px;
+    text-align: center;
+}
+
+#new-flashcards.c-40 .new-flashcard .counter {
+    width: 40px;
+}
+
+#new-flashcards.c-50 .new-flashcard .counter{
+    width: 50px;
+}
+
+#new-flashcards.c-60 .new-flashcard .counter{
+    width: 60px;
+}
+
+#createnewdiv {
+    text-align:center;
+}
+
+h2#createnew {
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: .3s;
+    display: inline-block;    
+}
+
+h2#createnew:hover {
+    color: var(--first-color);
+    text-shadow: none;
+}
+
+#submitdiv {
+    text-align: right;
+}
+
+#create-study-set-form input[type="submit"] {
+    display: inline-block;
+    /* margin-left: 100%; */
+    /* margin-left: 100%; */
+    min-width: 180px;
 }

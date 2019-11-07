@@ -12,14 +12,13 @@ Aplikacja zawiera takie funkcje jak:
 * Założenie konta użytkownika i nauczyciela - nauczyciel może dodawać fiszki. Konto nauczyciela wymaga specjalnego kodu nauczycielskiego możliwego do wykorzystania raz (wymyślonego na potrzeby tego projektu)
 * Możliwość wyłączenia konta (stanie się nieaktywne)
 * Konto administratora do zarządzania wszystkimi dostępnymi fiszkami
-* Nauka fiszek
+* Nauka zestawów fiszek
 * Odsłuch wymowy (Google text-to-speech)
-* Tworzenie nowych fiszek (tylko nauczyciel)
-* Dodawanie fiszek do ulubionych
-* Grupowanie fiszek (grupowanie dla zwykłego użytkownika - dostępne tylko dla niego)
-* Kategoryzowanie fiszek
-* Nauka fiszek generuje punkty //TODO przelicznik
-* Ranking wszystkich użytkowników rozdzielony na dzienny i tygodniowy, resetują się w każdy niedzielny wieczór
+* Tworzenie nowych zestawów fiszek (tylko nauczyciel)
+* Dodawanie zestawów do ulubionych
+* Kategoryzowanie zestawów fiszek
+* Nauka fiszek generuje punkty
+* Ranking wszystkich użytkowników rozdzielony na tygodniowy i ogólny, resetują się w każdy niedzielny wieczór
 
 Technologie projektu:
 
