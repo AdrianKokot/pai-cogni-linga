@@ -90,31 +90,16 @@
                 </div>
                 <section>
                   <h2>Fiszki:</h2>
-                  <!-- //TODO zmiana klasy (c-40, c-50, c-60) w zależności od ilości fiszek -->
                   <section id="new-flashcards" class="c-40">
                     <div class="new-flashcard">
                       <div class="counter">1</div>
-                      <input type="text" name="new-flashcard-term-0" placeholder="pojęcie">
-                      <input type="text" name="new-flashcard-definition-0" placeholder="definicja">
+                      <input type="text" name="new-flashcard-term-1" placeholder="pojęcie">
+                      <input type="text" name="new-flashcard-definition-1" placeholder="definicja">
                     </div>
-                    <div class="new-flashcard">
-                        <div class="counter">10</div>
-                        <input type="text" name="new-flashcard-term-0" placeholder="pojęcie">
-                        <input type="text" name="new-flashcard-definition-0" placeholder="definicja">
-                      </div>
-                    <div class="new-flashcard">
-                        <div class="counter">100</div>
-                        <input type="text" name="new-flashcard-term-0" placeholder="pojęcie">
-                        <input type="text" name="new-flashcard-definition-0" placeholder="definicja">
-                      </div>
-                    <div class="new-flashcard">
-                        <div class="counter">300</div>
-                        <input type="text" name="new-flashcard-term-0" placeholder="pojęcie">
-                        <input type="text" name="new-flashcard-definition-0" placeholder="definicja">
-                      </div>
                   </section>
                   <div id="createnewdiv"><h2 id="createnew"><i class="fas fa-plus"></i> Dodaj</h2></div>
                 </section>
+                <input type="number" id="flashcard-counter" name="flashcard-count" style="display: none;">
                 <div id="submitdiv"><input type="submit" value="Zapisz"></div>
               </form>
             </section>
@@ -149,6 +134,24 @@
         accountPanel.classList.remove("active");
         asideNav.classList.remove("visible");
       });
+
+      const createNew = document.querySelector("#createnew");
+      const flashcards = document.querySelector("#new-flashcards");
+      const counterInput = document.querySelector("#flashcard-counter");
+      let counter = 1;
+      createNew.addEventListener("click", () => {
+        counter++;
+        flashcards.innerHTML += `<div class="new-flashcard">
+                      <div class="counter">${counter}</div>
+                      <input type="text" name="new-flashcard-term-${counter}" placeholder="pojęcie">
+                      <input type="text" name="new-flashcard-definition-${counter}" placeholder="definicja">
+                    </div>`;
+        counterInput.value = counter;
+        if(counter==100){
+          flashcards.classList.remove("c-40");
+          flashcards.classList.add("c-60");
+        }
+      })
     </script>
   </body>
 </html>
