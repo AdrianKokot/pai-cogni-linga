@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Cogni Linga | Logowanie</title>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <nav id="page-nav">
+    <div id="nav-panel">
+      <i class="fas fa-bars"></i>
+    </div>
+    <h1 class="cogni"><a href="/main.html">Cogni linga</a></h1>
+    <div id="account-panel">
+      <i class="fas fa-angle-down"></i>
+      <div id="account-panel-menu">
+        <a href="/settings.html">Ustawienia</a>
+        <a href="/index.html">Wyloguj się</a>
+      </div>
+    </div>
+  </nav>
+  <nav id="aside-nav">
+    <ul>
+      <li title="Panel główny">
+        <a href="/main.html">
+          <div class="icon"><i class="fas fa-home"></i></div>
+          <div class="name">Panel aplikacji</div>
+        </a>
+      </li>
+      <li title="Nowe fiszki">
+        <a href="/create.html">
+          <div class="icon"><i class="fas fa-plus"></i></div>
+          <div class="name">Dodaj</div>
+        </a>
+      </li>
+      <li title="Szukaj" id="searchbtn">
+        <div class="icon"><i class="fas fa-search"></i></div>
+        <div class="name">Szukaj</div>
+      </li>
+      <li title="Twoje fiszki">
+        <a href="/usersets.html">
+          <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <div class="name">Twoje fiszki</div>
+        </a>
+      </li>
+      <li title="Wszystkie fiszki">
+        <a href="/allsets.html">
+          <div class="icon"><i class="fas fa-th-list"></i></div>
+          <div class="name">Wszystkie fiszki</div>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <section>
+    <!-- //TODO zmiana hasła, usunięcie konta -->
+    <!-- <section id="login-form">
+      <form action="">
+        <label>
+          Login:
+          <input type="text" name="username" required />
+        </label>
+        <label>
+          Hasło:
+          <input type="password" name="password" required />
+        </label>
+        <input type="submit" value="Zaloguj się" />
+      </form>
+    </section> -->
+  </section>
+
+  <script
+    src="https://kit.fontawesome.com/72c2c3d450.js"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    const accountPanel = document.querySelector("#account-panel");
+		const mainSection = document.querySelector("body > section");
+		const navpanel = document.querySelector("#nav-panel");
+		const asideNav = document.querySelector("#aside-nav");
+
+		accountPanel.addEventListener("click", () => {
+			if (accountPanel.classList.contains("active")) {
+				accountPanel.classList.remove("active");
+			} else {
+				accountPanel.classList.add("active");
+			}
+		});
+
+		navpanel.addEventListener("click", () => {
+			asideNav.classList.add("visible");
+		});
+
+		mainSection.addEventListener("click", () => {
+			accountPanel.classList.remove("active");
+			asideNav.classList.remove("visible");
+		});
+  </script>
+</body>
+</html>

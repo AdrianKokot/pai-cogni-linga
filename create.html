@@ -13,32 +13,44 @@
       <div id="nav-panel">
         <i class="fas fa-bars"></i>
       </div>
-      <h1 class="cogni">Cogni linga</h1>
+      <h1 class="cogni"><a href="/main.html">Cogni linga</a></h1>
       <div id="account-panel">
         <i class="fas fa-angle-down"></i>
         <div id="account-panel-menu">
-          <a href="">Ustawienia</a>
-          <a href="">Wyloguj się</a>
+          <a href="/settings.html">Ustawienia</a>
+          <a href="/index.html">Wyloguj się</a>
         </div>
       </div>
     </nav>
     <nav id="aside-nav">
       <ul>
-        <li title="Nowe fiszki">
-          <div class="icon"><i class="fas fa-plus"></i></div>
-          <div class="name">Dodaj</div>
+        <li title="Panel główny">
+          <a href="/main.html">
+            <div class="icon"><i class="fas fa-home"></i></div>
+            <div class="name">Panel aplikacji</div>
+          </a>
         </li>
-        <li title="Szukaj">
+        <li title="Nowe fiszki">
+          <a href="/create.html">
+            <div class="icon"><i class="fas fa-plus"></i></div>
+            <div class="name">Dodaj</div>
+          </a>
+        </li>
+        <li title="Szukaj" id="searchbtn">
           <div class="icon"><i class="fas fa-search"></i></div>
           <div class="name">Szukaj</div>
         </li>
         <li title="Twoje fiszki">
-          <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
-          <div class="name">Twoje fiszki</div>
+          <a href="/usersets.html">
+            <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="name">Twoje fiszki</div>
+          </a>
         </li>
         <li title="Wszystkie fiszki">
-          <div class="icon"><i class="fas fa-th-list"></i></div>
-          <div class="name">Wszystkie fiszki</div>
+          <a href="/allsets.html">
+            <div class="icon"><i class="fas fa-th-list"></i></div>
+            <div class="name">Wszystkie fiszki</div>
+          </a>
         </li>
       </ul>
     </nav>

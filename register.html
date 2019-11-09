@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cogni Linga | Rejestracja</title>
-    <link rel="stylesheet" href="css/main.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Cogni Linga | Rejestracja</title>
+	<link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
-    <nav id="page-nav">
-        <h1 class="cogni">Cogni linga</h1>
-        <div id="account-panel">
-            <i class="fas fa-angle-down"></i>
-            <div id="account-panel-menu">
-                <a href="">Zaloguj się</a>
-                <a href="">Utwórz konto</a>
-            </div>
-        </div>
-    </nav>
-    <section>
-        <section id="login-form">
-            <form action="">
-                <label>
-                    Nazwa użytkownika:
-                    <input type="text" name="username" required>
-                </label>
-                <label>
-                    Kod rejestracyjny:
-                    <input type="text" name="register-code">
-                </label>
-                <label>
-                    Hasło:
-                    <input type="password" name="password" required>
-                </label>
-                <label>
-                    Powtórz hasło:
-                    <input type="password" name="password-confirm" required>
-                </label>
-                <input type="submit" value="Zarejestruj się">
-            </form>
-        </section>
-    </section>
+	<nav id="page-nav">
+		<h1 class="cogni"><a href="/index.html">Cogni linga</a></h1>
+		<div id="account-panel">
+			<i class="fas fa-angle-down"></i>
+			<div id="account-panel-menu">
+				<a href="/login.html">Zaloguj się</a>
+				<a href="/register.html">Utwórz konto</a>
+			</div>
+		</div>
+	</nav>
+	<section>
+		<section id="login-form">
+			<form action="">
+				<label>
+					Nazwa użytkownika:
+					<input type="text" name="username" required />
+				</label>
+				<label>
+					Kod rejestracyjny:
+					<input type="text" name="register-code" />
+				</label>
+				<label>
+					Hasło:
+					<input type="password" name="password" required />
+				</label>
+				<label>
+					Powtórz hasło:
+					<input type="password" name="password-confirm" required />
+				</label>
+				<input type="submit" value="Zarejestruj się" />
+			</form>
+		</section>
+	</section>
 
-    <script src="https://kit.fontawesome.com/72c2c3d450.js" crossorigin="anonymous"></script>
-    <script>
-        const accountPanel = document.querySelector("#account-panel");
-        const mainSection = document.querySelector("body > section");
-        accountPanel.addEventListener('click', () => {
-            if (accountPanel.classList.contains('active')) {
-                accountPanel.classList.remove('active');
-            } else {
-                accountPanel.classList.add('active');
-            }
-        })
+	<script
+		src="https://kit.fontawesome.com/72c2c3d450.js"
+		crossorigin="anonymous"
+	></script>
+	<script>
+		const accountPanel = document.querySelector("#account-panel");
+		const mainSection = document.querySelector("body > section");
+		accountPanel.addEventListener("click", () => {
+			if (accountPanel.classList.contains("active")) {
+				accountPanel.classList.remove("active");
+			} else {
+				accountPanel.classList.add("active");
+			}
+		});
 
-        mainSection.addEventListener('click', () => {
-            accountPanel.classList.remove('active');
-        })
-    </script>
+		mainSection.addEventListener("click", () => {
+			accountPanel.classList.remove("active");
+		});
+	</script>
 </body>
-
 </html>
