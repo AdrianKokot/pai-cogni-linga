@@ -144,7 +144,7 @@
 			function speech(txt, lang) {
 				var msg = new SpeechSynthesisUtterance();
 				msg.volume = 1;
-				msg.rate = 1;
+				msg.rate = 1.5;
 				msg.pitch = 1.5;
 				msg.text  = txt;
 				msg.lang = langs[lang];
@@ -169,67 +169,8 @@
 			}
 
 			function initFlashcardFunctionality () {
-				const prevBtn = document.querySelector("#prev");
-				const nextBtn = document.querySelector("#next");
-				const flashcardsCounter = document.querySelector(".flashcards-counter");
-				let flashcards = document.querySelectorAll(".flashcard-view .flashcard");
-				const resetBtn = document.querySelector("#progress-reset");
-				const speechBtn = document.querySelector("#speechBtn");
-				const volumeBtn = document.querySelector("#volume-change");
-				const termDefinitionBtn = document.querySelector("#change-term-definition");
-				const volumeIcon = volumeBtn.querySelector("i");
-				let pos, count, curr, next, prev, muted = false, currTerm = true, termFirst = true;
 
-				pos = 1;
-				count = 1;
-				curr = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(${pos})`);
-				curr.classList.add("active");
-				flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
-
-				flashcards.forEach(el => {
-					el.addEventListener("click", () => {
-						if(el.classList.contains('active')){
-							el.classList.toggle('rotate');
-							currTerm=!currTerm;
-						}
-					});
-				});
-
-				nextBtn.addEventListener('click', () => {
-					if(pos < flashcardsArr.length){
-						pos++;
-						currTerm=termFirst;
-						if(pos>count) count = pos;
-						flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
-						curr.classList.add("learned");
-						next = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(${pos})`);
-						next.classList.add("active");
-						setTimeout(() => {
-							curr.classList.remove("active");
-							curr.classList.remove("rotate");
-							curr = next;
-						}, 301);
-					}
-				});
-
-				prevBtn.addEventListener('click', () => {
-					if(pos > 1) {
-						pos--;
-						currTerm=termFirst;
-						prev = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(${pos})`);
-						prev.classList.add("active");
-						setTimeout(() => {
-							prev.classList.remove("learned");
-						}, 10);
-						setTimeout(() => {
-							curr.classList.remove("active");
-							curr.classList.remove("rotate");
-							curr = prev;
-						}, 301)
-					}
-				});
-				
-				resetBtn.addEventListener("click", () => {
+				function initController() {
 					pos = 1;
 					count = 1;
 					currTerm = termFirst;
@@ -243,10 +184,71 @@
 							if(el.classList.contains('active')){
 								el.classList.toggle('rotate');
 								currTerm=!currTerm;
+								speechController();
 							}
 						});
 					});
+				}
+
+				const prevBtn = document.querySelector("#prev");
+				const nextBtn = document.querySelector("#next");
+				const flashcardsCounter = document.querySelector(".flashcards-counter");
+				const resetBtn = document.querySelector("#progress-reset");
+				const speechBtn = document.querySelector("#speechBtn");
+				const volumeBtn = document.querySelector("#volume-change");
+				const termDefinitionBtn = document.querySelector("#change-term-definition");
+				const volumeIcon = volumeBtn.querySelector("i");
+				let pos, count, curr, next, prev, muted = false, currTerm = true, termFirst = true, flashcards, canChange = true;
+
+				initController();
+
+				
+
+				nextBtn.addEventListener('click', () => {
+					if(pos < flashcardsArr.length && canChange) {
+						canChange = false;
+						pos++;
+						currTerm=termFirst;
+						if(pos>count) count = pos;
+						flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
+						curr.classList.add("learned");
+						next = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(${pos})`);
+						next.classList.add("active");
+						setTimeout(() => {
+							curr.classList.remove("active");
+							curr.classList.remove("rotate");
+							curr = next;
+							speechController();
+						}, 301);
+						setTimeout(()=>{
+							canChange = true;
+						}, 400);
+					}
 				});
+
+				prevBtn.addEventListener('click', () => {
+					if(pos > 1 && canChange) {
+						canChange = false;
+						pos--;
+						currTerm=termFirst;
+						prev = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(${pos})`);
+						prev.classList.add("active");
+						setTimeout(() => {
+							prev.classList.remove("learned");
+						}, 10);
+						setTimeout(() => {
+							curr.classList.remove("active");
+							curr.classList.remove("rotate");
+							curr = prev;
+							speechController();
+						}, 301)
+						setTimeout(()=>{
+							canChange = true;
+						}, 400);
+					}
+				});
+				
+				resetBtn.addEventListener("click", initController);
 
 				volumeBtn.addEventListener("click", () => {
 					muted = !muted;
@@ -260,13 +262,14 @@
 					
 				})
 
-				speechBtn.addEventListener("click", () => {
+				function speechController() {
 					if(!muted){
 						let lang = currTerm ? flashcardsLangs.termLang : flashcardsLangs.definitionLang;
 						let txt = currTerm ? flashcardsArr[flashcardsArr.length-pos].term : flashcardsArr[flashcardsArr.length-pos].definition;
 						speech(txt, lang);
 					}
-				});
+				}
+				speechBtn.addEventListener("click", speechController);
 
 				termDefinitionBtn.addEventListener("click", () => {
 					termFirst = !termFirst;
@@ -280,7 +283,6 @@
 				})
 			}
 
-			renderFlashcards(true);
 			initFlashcardFunctionality();
 
 		</script>
