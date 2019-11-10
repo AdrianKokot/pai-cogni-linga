@@ -57,8 +57,16 @@ textarea {
     text-align: center;
 }
 
+.lowercase {
+    text-transform: none;
+}
+
 body {
     background-color: var(--first-color);
+}
+
+p {
+    margin-bottom: 5px;
 }
 
 #page-nav {
@@ -573,7 +581,7 @@ form .form-group > * {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 }
 
-.new-flashcard > input {
+.new-flashcard > input, #new-flashcards.show span{
     flex-basis: 50%;
     margin: 20px;
     background-color: transparent;
@@ -628,7 +636,49 @@ h2#createnew:hover {
 
 #create-study-set-form input[type="submit"] {
     display: inline-block;
-    /* margin-left: 100%; */
-    /* margin-left: 100%; */
     min-width: 180px;
+}
+
+.studysetinfo {
+    margin: 0px -3px 20px;
+    font-size: .9rem;
+}
+
+.studysetdescription{
+    font-weight: 800;
+}
+
+.studysetinfo span {
+    margin: 0px 3px;
+}
+
+h2.smaller {
+    font-size: 1.2rem;
+}
+
+.studysetinfo.normal {
+    font-size: 1.3rem;
+}
+
+#new-flashcards.show {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -10px;
+    justify-content: center;
+}
+
+#new-flashcards.show span {
+    flex-basis: auto;
+}
+
+#new-flashcards.show .new-flashcard {
+    flex-basis: 40%;
+    margin: 10px;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+#app-panel article section.margin-20 {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
