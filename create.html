@@ -155,11 +155,12 @@
       let counter = 1;
       createNew.addEventListener("click", () => {
         counter++;
-        flashcards.innerHTML += `<div class="new-flashcard">
-                      <div class="counter">${counter}</div>
+        var div = document.createElement("div");
+        div.classList.add("new-flashcard");
+        div.innerHTML = `<div class="counter">${counter}</div>
                       <input type="text" name="new-flashcard-term-${counter}" placeholder="pojęcie">
-                      <input type="text" name="new-flashcard-definition-${counter}" placeholder="definicja">
-                    </div>`;
+                      <input type="text" name="new-flashcard-definition-${counter}" placeholder="definicja">`;
+        flashcards.append(div);
         counterInput.value = counter;
         if(counter==100){
           flashcards.classList.remove("c-40");
