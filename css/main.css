@@ -13,6 +13,7 @@
   --third-color: #dce9f6;
   --fourth-color: #f9f9fb;
   --white-color: #fff;
+  --red-color: #E60000;
 }
 
 html {
@@ -23,6 +24,11 @@ html {
 
 textarea {
   resize: none;
+}
+
+.wrong {
+  color: var(--red-color);
+  font-weight: 800;
 }
 
 .cogni {
@@ -515,7 +521,7 @@ option {
   border-radius: 3px;
 }
 
-#login-form input,
+#login-form input, #answerInput, #answerBtn,
 #create-study-set-form input,
 #create-study-set-form select,
 #create-study-set-form select option,
@@ -541,7 +547,7 @@ option {
   flex-basis: 80%;
 }
 
-#login-form label input,
+#login-form label input, #answerInput,
 #create-study-set-form label input,
 #create-study-set-form textarea,
 #create-study-set-form select,
@@ -727,7 +733,6 @@ h2.smaller {
 #learn-panel .flashcard-view {
     width: 530px;
     height: 250px;
-    /* overflow: hidden; */
     position: relative;
 }
 
@@ -796,6 +801,53 @@ h2.smaller {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.flashcards-panel.flashcards-panel-write{
+  flex-direction: column;
+}
+
+#learn-panel .flashcards-panel.flashcards-panel-write .flashcard {
+  padding: 10px 25px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+}
+
+#learn-panel .flashcards-panel.flashcards-panel-write .flashcard.active {
+  display: flex;
+}
+
+
+#learn-panel .flashcards-panel.flashcards-panel-write .flashcard .front {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#answerInput {
+  width: calc(100% - 100px);
+  margin-top: 0;
+}
+
+#answerBtn {
+  border: 1px solid var(--first-color);
+  background-color: var(--first-color);
+  color: var(--white-color);
+  cursor: pointer;
+  transition: .3s;
+}
+
+#answerBtn:hover {
+  background-color: transparent;
+  color: var(--first-color);
+}
+
+.flashcards-panel.flashcards-panel-write #answer {
+  width: 530px;
+}
+
+#errorMessage {
+  min-height: 19px;
 }
 
 #app-panel article .flashcards-panel > section {

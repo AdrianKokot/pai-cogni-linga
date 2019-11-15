@@ -71,7 +71,7 @@
 						</h2>
 						
             <p><b>Twój postęp: <span class="flashcards-counter"></span></b></p>
-            <section id="learn-panel">
+            <section id="learn-panel" class="flashcards-panel-write">
               <section class="flashcards-panel flashcards-panel-write">
                 <p id="errorMessage" class="wrong"></p>
                 <section class="flashcard-view">
@@ -136,16 +136,8 @@
 				const flashcardView = document.querySelector(".flashcard-view");
 				flashcardView.innerHTML = "";
 				flashcardsArr.forEach(el => {
-          //TODO generowanie tak aby nie bylo widac odpowiedzi w htmlu
-					flashcardView.innerHTML += `<div class="flashcard ${!termFirst ? "rotate" : ""}">
-											<div>
-												<div class="front">
-														${el.term}
-													</div>
-													<div class="back">
-														${el.definition}
-												</div>
-											</div>
+					flashcardView.innerHTML += `<div class="flashcard">
+                          ${termFirst ? el.term : el.definition}
 										</div>`;
 				});
 			}
@@ -154,20 +146,19 @@
 
 				function initController() {
 					pos = 1;
-					count = 1;
+          correct = 0;
 					currTerm = termFirst;
 					renderFlashcards(termFirst);
 					curr = document.querySelector(`.flashcard-view .flashcard:last-of-type`);
 					curr.classList.add("active");
-					flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
+					flashcardsCounter.textContent = `${pos}/${flashcardsArr.length}`;
 					flashcards = document.querySelectorAll(".flashcard-view .flashcard");
 				}
 
 				const flashcardsCounter = document.querySelector(".flashcards-counter");
 				const resetBtn = document.querySelector("#progress-reset");
-				const volumeBtn = document.querySelector("#volume-change");
 				const termDefinitionBtn = document.querySelector("#change-term-definition");
-				let pos, count, curr, next, currTerm = true, termFirst = true, flashcards;
+				let pos, curr, next, currTerm = true, termFirst = true, flashcards, correct = 0;
         const answerInput = document.querySelector("#answerInput");
         const answerBtn = document.querySelector("#answerBtn");
         const errorMessage = document.querySelector("#errorMessage");
@@ -178,8 +169,7 @@
 					if(pos < flashcardsArr.length) {
 						pos++;
 						currTerm=termFirst;
-						if(pos>count) count = pos;
-						flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
+						flashcardsCounter.textContent = `${pos}/${flashcardsArr.length}`;
 						curr.classList.add("learned");
 						next = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(2)`);
 						next.classList.add("active");
@@ -191,19 +181,21 @@
 					}
           if(pos == flashcardsArr.length){
             //TODO skończona nauka
+            //correct to licznik dobrych odpowiedzi
           }
 				}
 
         function check() {
-          console.log(answerInput.value, pos, flashcardsArr);
-          //TODO jak języki zamienione
-          if(answerInput.value == flashcardsArr[flashcardsArr.length - pos].definition){
-            //TODO czyszczenie inputa
+          // errorMessage.textContent = "";
+          let correct = termFirst ? flashcardsArr[flashcardsArr.length - pos].definition : flashcardsArr[flashcardsArr.length - pos].term;
+          if(answerInput.value == correct){
+            correct++;
             nextFlash();
           } else {
             // TODO info o złej odpowiedzi
-            errorMessage.textContent = "ŹLE!!!";
+            errorMessage.textContent = "Niepoprawna odpowiedź!";
           }
+          answerInput.value = "";
         }
 
         answerBtn.addEventListener("click", e => {
@@ -216,12 +208,7 @@
 				termDefinitionBtn.addEventListener("click", () => {
 					termFirst = !termFirst;
 					currTerm = termFirst;
-					flashcards.forEach(el => {
-						if(termFirst)
-							el.classList.remove("rotate");
-						else
-							el.classList.add("rotate");
-					})
+					initController();
 				})
 			}
 
