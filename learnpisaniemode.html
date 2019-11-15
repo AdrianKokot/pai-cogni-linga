@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cogni Linga | Nauka</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <meta name="theme-color" content="#373f51" />
+  </head>
+
+  <body>
+    <nav id="page-nav">
+      <div id="nav-panel">
+        <i class="fas fa-bars"></i>
+      </div>
+      <h1 class="cogni"><a href="main.html">Cogni linga</a></h1>
+      <div id="account-panel">
+        <i class="fas fa-angle-down"></i>
+        <div id="account-panel-menu">
+          <a href="settings.html">Ustawienia</a>
+          <a href="index.html">Wyloguj się</a>
+        </div>
+      </div>
+    </nav>
+    <nav id="aside-nav">
+      <ul>
+        <li title="Panel główny">
+          <a href="main.html">
+            <div class="icon"><i class="fas fa-home"></i></div>
+            <div class="name">Panel aplikacji</div>
+          </a>
+        </li>
+        <li title="Nowe fiszki">
+          <a href="create.html">
+            <div class="icon"><i class="fas fa-plus"></i></div>
+            <div class="name">Dodaj</div>
+          </a>
+        </li>
+        <li title="Szukaj" id="searchbtn">
+          <div class="icon"><i class="fas fa-search"></i></div>
+          <div class="name">Szukaj</div>
+        </li>
+        <li title="Twoje fiszki">
+          <a href="usersets.html">
+            <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="name">Twoje fiszki</div>
+          </a>
+        </li>
+        <li title="Wszystkie fiszki">
+          <a href="allsets.html">
+            <div class="icon"><i class="fas fa-th-list"></i></div>
+            <div class="name">Wszystkie fiszki</div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <section>
+      <section id="app-panel">
+        <article>
+          <section>
+            <p>
+              <a href="learn.html"><i class="fas fa-angle-left"></i> <b>Powrót</b></a>
+            </p>
+						<h2 class="lowercase learning">Nazwa zestawu jest bardzo bardzo długa 
+							<span class="learning-settings">
+								<span class="btn" id="progress-reset" title="Resetuj postęp"><i class="fas fa-sync-alt"></i></span>
+								<span class="btn" id="change-term-definition" title="Zmień kolejność wyświetlania definicji i pojęcia"><i class="fas fa-exchange-alt"></i></span>
+							</span>
+						</h2>
+						
+            <p><b>Twój postęp: <span class="flashcards-counter"></span></b></p>
+            <section id="learn-panel">
+              <section class="flashcards-panel flashcards-panel-write">
+                <p id="errorMessage" class="wrong"></p>
+                <section class="flashcard-view">
+                  
+                </section>
+                <form id="answer">
+                  <input type="text" name="flashcard-answer" id="answerInput">
+                  <input type="submit" value="Sprawdź" id="answerBtn">
+                </form>
+							</section>
+            </section>
+          </section>
+        </article>
+      </section>
+    </section>
+
+    <script
+      src="https://kit.fontawesome.com/72c2c3d450.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const accountPanel = document.querySelector("#account-panel");
+      const mainSection = document.querySelector("body > section");
+      const navpanel = document.querySelector("#nav-panel");
+      const asideNav = document.querySelector("#aside-nav");
+
+      accountPanel.addEventListener("click", () => {
+        if (accountPanel.classList.contains("active")) {
+          accountPanel.classList.remove("active");
+        } else {
+          accountPanel.classList.add("active");
+        }
+      });
+
+      navpanel.addEventListener("click", () => {
+        asideNav.classList.add("visible");
+      });
+
+      mainSection.addEventListener("click", () => {
+        accountPanel.classList.remove("active");
+        asideNav.classList.remove("visible");
+      });
+		</script>
+		<script>
+			const flashcardsArr = [{
+				"term": "pokój",
+				"definition": "room"
+			},{
+				"term": "mieszkanie",
+				"definition": "flat"
+			},{
+				"term": "postęp",
+				"definition": "progress"
+			}];
+			flashcardsArr.reverse();
+			const flashcardsLangs = {
+				"termLang": "pl",
+				"definitionLang": "en"
+			}			
+
+			function renderFlashcards(termFirst) {
+				const flashcardView = document.querySelector(".flashcard-view");
+				flashcardView.innerHTML = "";
+				flashcardsArr.forEach(el => {
+          //TODO generowanie tak aby nie bylo widac odpowiedzi w htmlu
+					flashcardView.innerHTML += `<div class="flashcard ${!termFirst ? "rotate" : ""}">
+											<div>
+												<div class="front">
+														${el.term}
+													</div>
+													<div class="back">
+														${el.definition}
+												</div>
+											</div>
+										</div>`;
+				});
+			}
+
+			function initFlashcardFunctionality () {
+
+				function initController() {
+					pos = 1;
+					count = 1;
+					currTerm = termFirst;
+					renderFlashcards(termFirst);
+					curr = document.querySelector(`.flashcard-view .flashcard:last-of-type`);
+					curr.classList.add("active");
+					flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
+					flashcards = document.querySelectorAll(".flashcard-view .flashcard");
+				}
+
+				const flashcardsCounter = document.querySelector(".flashcards-counter");
+				const resetBtn = document.querySelector("#progress-reset");
+				const volumeBtn = document.querySelector("#volume-change");
+				const termDefinitionBtn = document.querySelector("#change-term-definition");
+				let pos, count, curr, next, currTerm = true, termFirst = true, flashcards;
+        const answerInput = document.querySelector("#answerInput");
+        const answerBtn = document.querySelector("#answerBtn");
+        const errorMessage = document.querySelector("#errorMessage");
+
+				initController();
+
+        function nextFlash() {
+					if(pos < flashcardsArr.length) {
+						pos++;
+						currTerm=termFirst;
+						if(pos>count) count = pos;
+						flashcardsCounter.textContent = `${count}/${flashcardsArr.length}`;
+						curr.classList.add("learned");
+						next = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(2)`);
+						next.classList.add("active");
+            console.log(next);
+						setTimeout(() => {
+              curr.remove();
+							curr = next;
+						}, 301);
+					}
+          if(pos == flashcardsArr.length){
+            //TODO skończona nauka
+          }
+				}
+
+        function check() {
+          console.log(answerInput.value, pos, flashcardsArr);
+          //TODO jak języki zamienione
+          if(answerInput.value == flashcardsArr[flashcardsArr.length - pos].definition){
+            //TODO czyszczenie inputa
+            nextFlash();
+          } else {
+            // TODO info o złej odpowiedzi
+            errorMessage.textContent = "ŹLE!!!";
+          }
+        }
+
+        answerBtn.addEventListener("click", e => {
+          e.preventDefault();
+          check();
+        })
+				
+				resetBtn.addEventListener("click", initController);
+
+				termDefinitionBtn.addEventListener("click", () => {
+					termFirst = !termFirst;
+					currTerm = termFirst;
+					flashcards.forEach(el => {
+						if(termFirst)
+							el.classList.remove("rotate");
+						else
+							el.classList.add("rotate");
+					})
+				})
+			}
+
+			initFlashcardFunctionality();
+
+		</script>
+  </body>
+</html>
