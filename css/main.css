@@ -1003,7 +1003,7 @@ h2.learning {
   #new-flashcards .new-flashcard .counter{
     margin: 20px auto 5px;
   }
-  .new-flashcard {
+  #new-flashcards:not(.show) .new-flashcard {
     flex-direction: column;
   }
   .new-flashcard > input {
@@ -1055,6 +1055,9 @@ h2.learning {
 @media screen and (max-width: 320px) {
   #try-now, #try-now::after, #try-now::before{
     width: calc(100% - 30px);
+  }
+  h2:not(.lowercase) {
+    text-align: center;;
   }
 }
 
