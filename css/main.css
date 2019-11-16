@@ -4,7 +4,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -454,7 +460,7 @@ h2.load-more:hover {
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
-#app-panel article section {
+#app-panel article > section {
   margin-bottom: 30px;
 }
 
@@ -474,15 +480,21 @@ h2.load-more:hover {
 #categories .category-prev {
   padding: 10px 20px;
   cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+  /* margin-right: auto;
+  margin-left: auto; */
 }
 
-#ranking {
+/* #ranking {
   flex-wrap: nowrap;
-}
+} */
 
 #ranking .user-prev {
   padding: 10px 20px 10px 10px;
   display: flex;
+  flex-basis: calc(20% - 20px);
+  flex-grow: 1;
 }
 
 #ranking .user-prev .left {
@@ -931,10 +943,35 @@ h2.learning {
   }
 }
 
+@media screen and (max-width: 950px) {
+  .flash-prev{
+    flex-basis: 100%;
+  }
+}
+
 @media screen and (max-width: 740px) {
   #cogni-functions .d-flex.f-wrap {
     align-items: center;
     flex-direction: column;
+  }
+  body > section > section > :first-child {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  html{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  #ranking .user-prev {
+    flex-basis: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #app-panel, #login-form {
+    padding: 35px 20px;
   }
 }
 
@@ -946,10 +983,20 @@ h2.learning {
     height: auto;
     width: 100%;
   }
+  .flash-img {
+    display: none;
+  }
+  .flash-prev {
+    min-width: auto;
+  }
 }
 
 @media screen and (max-width: 320px) {
   #try-now, #try-now::after, #try-now::before{
     width: 100%;
   }
+}
+
+div:focus, a:focus {
+  outline: none;
 }
