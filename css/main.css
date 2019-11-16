@@ -282,6 +282,7 @@ p {
   right: 0;
   left: 0;
   transition: 0.2s;
+  margin: auto;
 }
 
 #try-now::after {
@@ -919,11 +920,6 @@ h2.learning {
     transition: .2s;  
 }
 
-#cogni-functions .d-flex.f-wrap {
-  margin-right: -10px;
-  margin-left: -10px;
-}
-
 #cogni-functions .d-flex.f-wrap > p {
   padding: 0px 10px;
   text-align:center;
@@ -997,7 +993,7 @@ h2.learning {
 
 @media screen and (max-width: 320px) {
   #try-now, #try-now::after, #try-now::before{
-    width: 100%;
+    width: calc(100% - 30px);
   }
 }
 
