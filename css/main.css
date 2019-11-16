@@ -944,6 +944,7 @@ h2.learning {
   .flash-prev{
     flex-basis: 100%;
   }
+  
 }
 
 @media screen and (max-width: 740px) {
@@ -970,8 +971,11 @@ h2.learning {
 }
 
 @media screen and (max-width: 500px) {
-  #app-panel, #login-form {
+  #app-panel {
     padding: 35px 20px;
+  }
+  #login-form{
+    padding: 0px 15px;
   }
 }
 
