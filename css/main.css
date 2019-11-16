@@ -604,7 +604,7 @@ form .form-group {
 form .form-group > * {
   margin-right: 15px;
   margin-left: 15px;
-  flex-basis: 50%;
+  flex-basis: calc(25% - 30px);
 }
 
 #create-study-set-from textarea {
@@ -949,6 +949,9 @@ h2.learning {
   .columns2 .flash-img {
     display: none;
   }
+  form .form-group > * {
+    flex-basis: calc(50% - 30px);
+  }
 }
 
 @media screen and (max-width: 740px) {
@@ -997,6 +1000,16 @@ h2.learning {
     font-size: 2rem;
     margin: 0 22px;
   }
+  #new-flashcards .new-flashcard .counter{
+    margin: 20px auto 5px;
+  }
+  .new-flashcard {
+    flex-direction: column;
+  }
+  .new-flashcard > input {
+    width: calc(100% - 40px);
+    margin: 0px 20px 20px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -1005,6 +1018,10 @@ h2.learning {
   }
   #login-form{
     padding: 0px 15px;
+  }
+  #create-study-set-form input[type="submit"] {
+    width: 100%;
+    margin-top:20px;
   }
 }
 
@@ -1029,6 +1046,10 @@ h2.learning {
     font-size: 1.8rem;
     margin: 0 12px;
   }
+  form .form-group > * {
+    flex-basis: calc(100% - 30px);
+  }
+  
 }
 
 @media screen and (max-width: 320px) {
