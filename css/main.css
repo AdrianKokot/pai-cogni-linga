@@ -959,7 +959,7 @@ h2.learning {
     font-size: 14px;
   }
   #login-form {
-    height: 100vh;
+    height: calc(100vh - 44px);
   }
 }
 
