@@ -343,7 +343,7 @@ a:hover, #speechBtn:hover {
 }
 
 #login-form {
-  height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -353,7 +353,6 @@ a:hover, #speechBtn:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -100px;
 }
 
 #login-form form input {
@@ -696,6 +695,7 @@ h2#createnew:hover {
 
 .studysetinfo span {
   margin: 0px 3px;
+  white-space:nowrap;
 }
 
 h2.smaller {
@@ -936,11 +936,19 @@ h2.learning {
   }
 }
 
+@media screen and (max-width: 1000px) {
+  #app-panel {
+    padding: 60px 10px;
+  }
+}
+
 @media screen and (max-width: 950px) {
   .flash-prev{
     flex-basis: 100%;
+  }  
+  .columns2 .flash-img {
+    display: none;
   }
-  
 }
 
 @media screen and (max-width: 740px) {
@@ -952,11 +960,15 @@ h2.learning {
     padding-right: 0;
     padding-left: 0;
   }
+  #app-panel {
+    padding: 60px 45px;
+  }
+  
   html{
     font-size: 14px;
   }
   #login-form {
-    height: calc(100vh - 44px);
+    min-height: calc(100vh - 44px);
   }
 }
 
