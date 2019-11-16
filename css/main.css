@@ -442,6 +442,7 @@ h2.load-more {
   position: relative;
   cursor: pointer;
   transition: 0.3s;
+  margin-top:-15px;
 }
 
 h2.load-more .icon {
@@ -930,7 +931,9 @@ h2.learning {
 
 /* RWD */
 @media screen and (max-width: 1300px) {
-
+  #login-form form{
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -960,6 +963,9 @@ h2.learning {
   }
   html{
     font-size: 14px;
+  }
+  #login-form {
+    height: 100vh;
   }
 }
 
