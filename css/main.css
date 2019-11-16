@@ -353,10 +353,12 @@ a:hover, #speechBtn:hover {
   display: block;
 }
 
-#app-panel #recent {
+#app-panel .recent {
   display: flex;
   flex-wrap: wrap;
   padding-top: 10px;
+  margin-right: -20px;
+  margin-left: -20px;
 }
 
 .flash-prev {
@@ -367,19 +369,17 @@ a:hover, #speechBtn:hover {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   padding: 10px;
   width: 100%;
-  flex-basis: 31%;
+  flex-basis: calc(33% - 40px);
   margin-bottom: 30px;
+  margin: 0px 20px 30px;
   transition: box-shadow 0.2s;
+  min-width: 315px;
+  flex-grow: 1;
 }
 
 .flash-prev:hover {
   text-shadow: none;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-}
-
-.flash-prev:nth-of-type(3n - 2),
-.flash-prev:nth-of-type(3n -1) {
-  margin-right: 40px;
 }
 
 .flash-img {
@@ -904,4 +904,52 @@ h2.learning {
     font-size: 1rem;  
     cursor: pointer;
     transition: .2s;  
+}
+
+#cogni-functions .d-flex.f-wrap {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+#cogni-functions .d-flex.f-wrap > p {
+  padding: 0px 10px;
+  text-align:center;
+}
+
+/* RWD */
+@media screen and (max-width: 1300px) {
+
+}
+
+@media screen and (max-width: 1200px) {
+  #main-offer main {
+    justify-content: center;
+    padding: 60px 0px 145px;
+  }
+  #main-offer main section {
+    margin: 0px 40px 60px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  #cogni-functions .d-flex.f-wrap {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #main-offer main section {
+    flex-basis: 100%;
+  }
+  #main-offer main section figure img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #try-now, #try-now::after, #try-now::before{
+    width: 100%;
+  }
 }
