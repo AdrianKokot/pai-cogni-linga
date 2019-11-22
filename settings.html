@@ -6,8 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Cogni Linga | Ustawienia</title>
   <link rel="stylesheet" href="css/main.css" />
-  <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-  <meta name="theme-color" content="#373f51">
+  <link href="fontawesome/css/all.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="favicon.png" />
+  <meta name="theme-color" content="#373f51" />
 </head>
 
 <body>
@@ -57,26 +58,54 @@
     </ul>
   </nav>
   <section>
-    <!-- //TODO zmiana hasła, usunięcie konta -->
-    <!-- <section id="login-form">
-      <form action="">
-        <label>
-          Login:
-          <input type="text" name="username" required />
-        </label>
-        <label>
-          Hasło:
-          <input type="password" name="password" required />
-        </label>
-        <input type="submit" value="Zaloguj się" />
-      </form>
-    </section> -->
+    <article>
+      <section id="usrsettings">
+        <section id="login-form">
+          <h2>Ustawienia użytkownika</h2>
+          <details>
+            <summary>Zmiana hasła</summary>
+            <form action="">
+              <label>
+                Stare hasło:
+                <input
+                  type="text"
+                  name="old-password"
+                  required
+                  title="Hasło jest wymagane"
+                />
+              </label>
+              <label>
+                Nowe hasło:
+                <input
+                  type="password"
+                  name="password"
+                  required
+                  title="Nowe hasło jest wymagane"
+                />
+              </label>
+              <label>
+                Powtórz nowe hasło:
+                <input
+                  type="password"
+                  name="password-repeat"
+                  required
+                  title="Potwierdzenie nowego hasła jest wymagane"
+                />
+              </label>
+              <input type="submit" value="Zmień" />
+            </form>
+          </details>
+          <details>
+            <summary>Usuwanie konta</summary>
+            <form action="">
+              <input type="submit" class="wrong" value="Usuń" />
+            </form>
+          </details>
+        </section>
+      </section>
+    </article>
   </section>
 
-  <script
-    src="https://kit.fontawesome.com/72c2c3d450.js"
-    crossorigin="anonymous"
-  ></script>
   <script src="js/navigation.js"></script>
 </body>
 </html>

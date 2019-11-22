@@ -1077,3 +1077,30 @@ h2.learning {
 div:focus, a:focus {
   outline: none;
 }
+
+#usrsettings #login-form {
+  display: block;
+}
+
+#usrsettings #login-form form input.wrong {
+  background-color: var(--red-color);
+  border-color: var(--red-color);
+}
+
+#usrsettings #login-form form input.wrong:hover {
+  background-color: transparent;
+  color: var(--red-color);
+}
+
+details {
+  margin: 1.2rem 0;
+}
+
+details:focus, summary, summary:focus, details {
+  outline: none;
+  border:none;
+}
+
+summary {
+  margin: 1rem 0;
+}
