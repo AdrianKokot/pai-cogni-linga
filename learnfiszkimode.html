@@ -206,6 +206,7 @@
 
 				nextBtn.addEventListener('click', () => {
 					if(pos < flashcardsArr.length && canChange) {
+						prevBtn.classList.remove("disabled");
 						canChange = false;
 						pos++;
 						currTerm=termFirst;
@@ -222,10 +223,14 @@
 						setTimeout(()=>{
 							canChange = true;
 						}, 400);
+					} 
+					if(pos == flashcardsArr.length) {
+						nextBtn.classList.add("disabled");
 					}
 				});
 
 				prevBtn.addEventListener('click', () => {
+					nextBtn.classList.remove("disabled");
 					if(pos > 1 && canChange) {
 						canChange = false;
 						pos--;
@@ -244,7 +249,13 @@
 							canChange = true;
 						}, 400);
 					}
+					if(pos == 0){
+						prevBtn.classList.add("disabled");
+					}
 				});
+				
+
+				prevBtn.classList.add("disabled");
 				
 				resetBtn.addEventListener("click", initController);
 

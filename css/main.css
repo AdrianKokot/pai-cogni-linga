@@ -21,6 +21,7 @@
   --white-color: #fff;
   --red-color: #E60000;
   --green-color: #37a037;
+  --grey-color: rgba(55, 63, 81, 0.2);
 }
 
 html {
@@ -884,15 +885,21 @@ h2.smaller {
 	transition: .3s;
 }
 
-.flashcards-panel #prev:hover, .flashcards-panel #next:hover {
+.flashcards-panel #prev.disabled, 
+.flashcards-panel #next.disabled {
+  color: var(--grey-color);
+  cursor: default;
+}
+
+.flashcards-panel #prev:not(.disabled):hover, .flashcards-panel #next:not(.disabled):hover {
 	text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
-.flashcards-panel #prev:hover {
+.flashcards-panel #prev:not(.disabled):hover {
 	transform: translateX(-2px);
 }
 
-.flashcards-panel #next:hover {
+.flashcards-panel #next:not(.disabled):hover {
 	transform: translateX(2px);
 }
 
