@@ -78,7 +78,7 @@
                   
                 </section>
                 <form id="answer">
-                  <input type="text" name="flashcard-answer" id="answerInput">
+                  <input type="text" name="flashcard-answer" id="answerInput" autofocus>
                   <input type="submit" value="Sprawdź" id="answerBtn">
                 </form>
 							</section>
@@ -180,8 +180,8 @@
 					} else if(pos == flashcardsArr.length){
             document.querySelector("#learn-panel .flashcards-panel.flashcards-panel-write").remove();
             const learnPanel = document.querySelector("#learn-panel");
-            learnPanel.innerHTML += `<h3 class="t-center"><strong>Poprawnych odpowiedzi: <span class="good">${correct}</span> | Niepoprawnych odpowiedzi: <span class="wrong">${badAnswers.length}</span></strong></h3>`;
-            if(badAnswers.length > 0) learnPanel.innerHTML += `<p class="t-center"><strong>Spis słówek, na które odpowiedziano błędnie:</strong></p>`;
+            learnPanel.innerHTML += `<h3 class="t-center mt-20"><span>Poprawnych odpowiedzi: <span class="good">${correct}</span></span> | <span>Niepoprawnych odpowiedzi: <span class="wrong">${badAnswers.length}</span></span></h3>`;
+            if(badAnswers.length > 0) learnPanel.innerHTML += `<p class="t-center">Spis słówek, na które odpowiedziano błędnie:</p>`;
             badAnswers.forEach(answerPos => {
               learnPanel.innerHTML += `<p class="t-center mt-15">${flashcardsArr[flashcardsArr.length - answerPos].definition} <strong>-</strong> ${flashcardsArr[flashcardsArr.length - answerPos].term}</p>`;
             });
@@ -204,6 +204,7 @@
                 canCheck = true;
                 nextFlash();
                 answerInput.disabled = false;
+                answerInput.focus();
               },1000);
             }
             answerInput.value = "";
