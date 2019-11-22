@@ -46,7 +46,7 @@ if(navpanel){
 }
   
 
-if(mainSection)
+if(navpanel && mainSection)
 mainSection.addEventListener("click", e => {
   e.preventDefault();
   e.stopPropagation();
