@@ -47,7 +47,9 @@ if(navpanel){
   
 
 if(mainSection)
-mainSection.addEventListener("click", () => {
+mainSection.addEventListener("click", e => {
+  e.preventDefault();
+  e.stopPropagation();
   accountPanel.classList.remove("active");
   asideNav.classList.remove("visible");
 });
