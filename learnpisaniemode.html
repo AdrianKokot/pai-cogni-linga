@@ -61,7 +61,7 @@
         <article>
           <section>
             <p>
-              <a href="learn.html"><i class="fas fa-angle-left"></i> <b>Powrót</b></a>
+              <a href="learn.html"><i class="fas fa-angle-left"></i> <strong>Powrót</strong></a>
             </p>
 						<h2 class="lowercase learning">Nazwa zestawu jest bardzo bardzo długa 
 							<span class="learning-settings">
@@ -70,7 +70,7 @@
 							</span>
 						</h2>
 						
-            <p><b>Twój postęp: <span class="flashcards-counter"></span></b></p>
+            <p><strong>Twój postęp: <span class="flashcards-counter"></span></strong></p>
             <section id="learn-panel" class="flashcards-panel-write">
               <section class="flashcards-panel flashcards-panel-write">
                 <p id="errorMessage" class="wrong"></p>
@@ -158,7 +158,7 @@
 				const flashcardsCounter = document.querySelector(".flashcards-counter");
 				const resetBtn = document.querySelector("#progress-reset");
 				const termDefinitionBtn = document.querySelector("#change-term-definition");
-				let pos, curr, next, currTerm = true, termFirst = true, flashcards, correct = 0;
+				let pos, curr, next, currTerm = true, termFirst = true, flashcards, correct = 0, canCheck = true, badAnswers = [];
         const answerInput = document.querySelector("#answerInput");
         const answerBtn = document.querySelector("#answerBtn");
         const errorMessage = document.querySelector("#errorMessage");
@@ -173,29 +173,41 @@
 						curr.classList.add("learned");
 						next = document.querySelector(`.flashcard-view .flashcard:nth-last-of-type(2)`);
 						next.classList.add("active");
-            console.log(next);
 						setTimeout(() => {
               curr.remove();
 							curr = next;
 						}, 301);
-					}
-          if(pos == flashcardsArr.length){
-            //TODO skończona nauka
-            //correct to licznik dobrych odpowiedzi
+					} else if(pos == flashcardsArr.length){
+            document.querySelector("#learn-panel .flashcards-panel.flashcards-panel-write").remove();
+            const learnPanel = document.querySelector("#learn-panel");
+            learnPanel.innerHTML += `<h3 class="t-center"><strong>Poprawnych odpowiedzi: <span class="good">${correct}</span> | Niepoprawnych odpowiedzi: <span class="wrong">${badAnswers.length}</span></strong></h3>`;
+            if(badAnswers.length > 0) learnPanel.innerHTML += `<p class="t-center"><strong>Spis słówek, na które odpowiedziano błędnie:</strong></p>`;
+            badAnswers.forEach(answerPos => {
+              learnPanel.innerHTML += `<p class="t-center mt-15">${flashcardsArr[flashcardsArr.length - answerPos].definition} <strong>-</strong> ${flashcardsArr[flashcardsArr.length - answerPos].term}</p>`;
+            });
           }
 				}
 
         function check() {
-          // errorMessage.textContent = "";
-          let correct = termFirst ? flashcardsArr[flashcardsArr.length - pos].definition : flashcardsArr[flashcardsArr.length - pos].term;
-          if(answerInput.value == correct){
-            correct++;
-            nextFlash();
-          } else {
-            // TODO info o złej odpowiedzi
-            errorMessage.textContent = "Niepoprawna odpowiedź!";
+          if(canCheck){
+            let correctAnswer = termFirst ? flashcardsArr[flashcardsArr.length - pos].definition : flashcardsArr[flashcardsArr.length - pos].term;
+            if(answerInput.value == correctAnswer){
+              correct++;
+              nextFlash();
+            } else {
+              errorMessage.textContent = "Niepoprawna odpowiedź!";
+              badAnswers.push(pos);
+              canCheck = false;
+              answerInput.disabled = true;
+              setTimeout(() => {
+                errorMessage.textContent = "";
+                canCheck = true;
+                nextFlash();
+                answerInput.disabled = false;
+              },1000);
+            }
+            answerInput.value = "";
           }
-          answerInput.value = "";
         }
 
         answerBtn.addEventListener("click", e => {

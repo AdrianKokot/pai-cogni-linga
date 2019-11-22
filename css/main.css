@@ -20,6 +20,7 @@
   --fourth-color: #f9f9fb;
   --white-color: #fff;
   --red-color: #E60000;
+  --green-color: #37a037;
 }
 
 html {
@@ -34,6 +35,11 @@ textarea {
 
 .wrong {
   color: var(--red-color);
+  font-weight: 800;
+}
+
+.good {
+  color: var(--green-color);
   font-weight: 800;
 }
 
@@ -63,6 +69,10 @@ textarea {
 
 .mt-10 {
   margin-top: 0.4rem;
+}
+
+.mt-15 {
+  margin-top: 1rem;
 }
 
 .mt-20 {
