@@ -191,7 +191,7 @@
         function check() {
           if(canCheck){
             let correctAnswer = termFirst ? flashcardsArr[flashcardsArr.length - pos].definition : flashcardsArr[flashcardsArr.length - pos].term;
-            if(answerInput.value == correctAnswer){
+            if(answerInput.value.toLowerCase() == correctAnswer.toLowerCase()){
               correct++;
               nextFlash();
             } else {
