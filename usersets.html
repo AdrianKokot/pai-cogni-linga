@@ -185,28 +185,6 @@
 		src="https://kit.fontawesome.com/72c2c3d450.js"
 		crossorigin="anonymous"
 	></script>
-	<script>
-		const accountPanel = document.querySelector("#account-panel");
-		const mainSection = document.querySelector("body > section");
-		const navpanel = document.querySelector("#nav-panel");
-		const asideNav = document.querySelector("#aside-nav");
-
-		accountPanel.addEventListener("click", () => {
-			if (accountPanel.classList.contains("active")) {
-				accountPanel.classList.remove("active");
-			} else {
-				accountPanel.classList.add("active");
-			}
-		});
-
-		navpanel.addEventListener("click", () => {
-			asideNav.classList.add("visible");
-		});
-
-		mainSection.addEventListener("click", () => {
-			accountPanel.classList.remove("active");
-			asideNav.classList.remove("visible");
-		});
-	</script>
+	<script src="js/navigation.js"></script>
 </body>
 </html>

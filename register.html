@@ -49,20 +49,6 @@
 		src="https://kit.fontawesome.com/72c2c3d450.js"
 		crossorigin="anonymous"
 	></script>
-	<script>
-		const accountPanel = document.querySelector("#account-panel");
-		const mainSection = document.querySelector("body > section");
-		accountPanel.addEventListener("click", () => {
-			if (accountPanel.classList.contains("active")) {
-				accountPanel.classList.remove("active");
-			} else {
-				accountPanel.classList.add("active");
-			}
-		});
-
-		mainSection.addEventListener("click", () => {
-			accountPanel.classList.remove("active");
-		});
-	</script>
+	<script src="js/navigation.js"></script>
 </body>
 </html>
