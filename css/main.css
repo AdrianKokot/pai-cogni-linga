@@ -1105,3 +1105,44 @@ summary {
   margin: 1rem 0;
   
 }
+
+.searchform {
+  width: 100%;
+}
+
+.searchform input:first-of-type {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.searchform input {
+  padding: 8px 10px;
+}
+
+.searchform input:last-of-type {
+  border: 2px solid var(--first-color);
+  background-color: var(--first-color);
+  color: var(--fourth-color);
+  transition: .3s;
+  cursor: pointer;
+}
+
+.searchform input:last-of-type:hover {
+  background-color: transparent;
+  color: var(--first-color);
+  font-weight: 800;
+}
+
+.button-accent {
+  color: #525868;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.button-accent:hover {
+  color: var(--first-color);
+}
+
+.button-accent:first-of-type {
+  margin-right: 15px;
+}
