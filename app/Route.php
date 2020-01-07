@@ -1,9 +1,17 @@
 <?php
-class Route {
 
+require_once (ROOT_DIR.'/app/Controller.php');
+require 'Guard.php';
+
+class Route extends Controller {
+
+  // file - plik do wygenerowania, 
+  // title - tytuł strony, 
+  // roles - role ktore maja dostep do tego routu, 
+  // redirect - route do ktorego ma przekierowac jesli rola jest niepoprawna
   private $routes = [
     '/' => [
-      'file' => 'index.html',
+      'file' => 'index.php',
       'title' => 'Strona główna',
       'roles' => ['guest'],
       'redirect' => '/cogni'
@@ -30,9 +38,46 @@ class Route {
       'redirect' => '/logowanie'
     ],
     '/wyloguj' => [
+      'controller' => 'AuthController',
       'function' => 'logout',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
+    ],
+    '/dodaj' => [
+      'file' => 'create.php',
+      'title' => 'Tworzenie zestawu',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/wszystkie-fiszki' => [
+      'file' => 'allsets.php',
+      'title' => 'Wszystkie fiszki',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/szukaj' => [
+      'file' => 'search.php',
+      'title' => 'Szukaj fiszek',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/moje-fiszki' => [
+      'file' => 'usersets.php',
+      'title' => 'Moje fiszki',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/ustawienia' => [
+      'file' => 'settings.php',
+      'title' => 'Moje konto',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/nauka' => [
+      'controller' => 'LearnController',
+      'function' => 'learn',
+      'roles' => ['user', 'admin'],
+      'redirect' => 'notfound'
     ],
     '/test' => [
       'function' => 'test',
@@ -40,8 +85,10 @@ class Route {
     ]
   ];
 
+  // routy używane gdy metodą jest POST
   private $postRoutes = [
     '/logowanie' => [
+      'controller' => 'AuthController',
       'function' => 'login',
       'roles' => ['guest'],
       'redirect' => '/'
@@ -53,44 +100,37 @@ class Route {
     ]
   ];
 
-  public function render($requestedRoute) {
-    if(!isset($this->routes[$requestedRoute])) {
+  public function render($requestedRoute, $method = 'get') {
+    if($method == 'get' ? !isset($this->routes[$requestedRoute]) : !isset($this->postRoutes[$requestedRoute])) {
+
       $requestedRoute = 'notfound';
       header("HTTP/1.1 404 Not Found");
+
     } else {
 
-      if(!in_array($_SESSION['role'],$this->routes[$requestedRoute]['roles'])) {
-        $this->redirectTo($this->routes[$requestedRoute]['redirect']);
+      if($method == 'get' ? !Guard::checkAccess($_SESSION['role'],$this->routes[$requestedRoute]['roles']) : !Guard::checkAccess($_SESSION['role'],$this->postRoutes[$requestedRoute]['roles'])) {
+        $method == 'get' ? $this->redirectTo($this->routes[$requestedRoute]['redirect']) : $this->redirectTo($this->postRoutes[$requestedRoute]['redirect']);
       }
 
-      $functionToCall = $this->routes[$requestedRoute]['function'] ?? null;
-      if($functionToCall != null) $this->$functionToCall();
-    }
+      $controllerToRequire = $method == 'get' ? ($this->routes[$requestedRoute]['controller'] ?? null) : ($this->postRoutes[$requestedRoute]['controller'] ?? null);
 
-    require_once $_SESSION['publicPath'].'/views/'.$this->routes[$requestedRoute]['file'];
-  }
+      if($controllerToRequire != null) {
+        
+        require_once (ROOT_DIR.'/controllers/'.$controllerToRequire.'.php');
 
-  public function post($requestedRoute) {
-    if(!isset($this->postRoutes[$requestedRoute])) {
-      die();
-    } else {
+        class_alias($controllerToRequire, 'PageController');
+        $pageController = new PageController();
 
-      if(!in_array($_SESSION['role'],$this->postRoutes[$requestedRoute]['roles']) || ($_SESSION['status'] ?? 'active') != 'active') {
-        $this->redirectTo($this->postRoutes[$requestedRoute]['redirect']);
+        $functionToCall = $method == 'get' ? ($this->routes[$requestedRoute]['function'] ?? null) : ($this->postRoutes[$requestedRoute]['function'] ?? null);
+        if($functionToCall != null) $pageController->$functionToCall();
+
+      } else {
+        $functionToCall = $method == 'get' ? ($this->routes[$requestedRoute]['function'] ?? null) : ($this->postRoutes[$requestedRoute]['function'] ?? null);
+        if($functionToCall != null) $this->$functionToCall();
       }
 
-      $functionToCall = $this->postRoutes[$requestedRoute]['function'] ?? null;
-      if($functionToCall != null) $this->$functionToCall();
     }
-  }
-
-  public function getPageTitle($requestedRoute) {
-    return $this->routes[$requestedRoute]['title'] ?? 'Nie znaleziono';
-  }
-
-  private function redirectTo($route = null) {
-    header('Location: '.($route ?? '/'));
-    die();
+    return $this->view($this->routes[$requestedRoute]['file'], ['pageTitle' => $this->routes[$requestedRoute]['title']]);
   }
   
   // FUNKCJA DO TESTÓW
@@ -98,53 +138,4 @@ class Route {
     die();
   }
 
-  // POST FUNCTIONS
-  private function login() {
-    if(!(isset($_POST['btnSubmit'])&&isset($_POST['username'])&&isset($_POST['password']))) {
-      $this->redirectTo('/logowanie');
-    }
-
-    require_once 'Auth.php';
-    $authData = Auth::login($_POST['username'], $_POST['password']);
-    
-    if($authData == null) {
-      Session::setFlash('Nazwa użytkownika lub hasło jest nieprawidłowe.');
-      $this->redirectTo('/logowanie');
-    } 
-
-    require_once 'Guard.php';
-    $_SESSION['role'] = Guard::getRole($authData['role']);
-    $_SESSION['status'] = Guard::getStatus($authData['role']);
-    $_SESSION['userId'] = $authData['id'];
-
-    $this->redirectTo('/');
-  }
-
-  private function register() {
-    if(!(isset($_POST['btnSubmit'])&&isset($_POST['username'])&&isset($_POST['password'])&&isset($_POST['password-confirm']))) {
-      Session::setFlash('Proszę wypełnić wszystkie pola.');
-      $this->redirectTo('/rejestracja');
-    }
-
-    if($_POST['password'] !== $_POST['password-confirm']){
-      Session::setFlash('Hasła nie zgadzają się ze sobą.');
-      $this->redirectTo('/rejestracja');
-    }
-
-    require_once 'Auth.php';
-    $authData = Auth::register($_POST['username'], $_POST['password'], $_POST['register-code'] ?? null);
-    
-    require_once 'Guard.php';
-    $_SESSION['role'] = Guard::getRole($authData['role']);
-    $_SESSION['status'] = Guard::getStatus($authData['role']);
-    $_SESSION['userId'] = $authData['id'];
-
-    $this->redirectTo('/');
-  }
-
-  private function logout() {
-    require_once 'Auth.php';
-    Auth::logout();
-    $this->redirectTo('/');
-  }
 }

@@ -26,4 +26,4 @@
   </section>
 </section>
 
-<script src="js/navigation.js"></script>
+<script src="/js/navigation.js"></script>
