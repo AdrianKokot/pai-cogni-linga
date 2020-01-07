@@ -1,10 +1,10 @@
 <?php
-function DB() {
-  define("HOST", "localhost");
-  define("USER", "root");
-  define("PASSWORD", "");
-  define("DATABASE", "cognilinga");
+define("HOST", "localhost");
+define("USER", "root");
+define("PASSWORD", "");
+define("DATABASE", "cognilinga");
 
+function DB() {
   $db = new PDO('mysql:host='.HOST.';dbname='.DATABASE.'', USER, PASSWORD, [
     PDO::ATTR_EMULATE_PREPARES => false,
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

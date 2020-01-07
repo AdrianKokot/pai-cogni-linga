@@ -1,9 +1,13 @@
 <?php 
 session_start();
+require_once 'app/Session.php';
 require_once 'database/Connection.php';
 if(!isset($_SESSION['role'])) $_SESSION['role'] = 'guest';
 
-require_once 'controllers/Route.php';
+require_once 'database/Prepare.php';
+DBInsertData();
+
+require_once 'app/Route.php';
 $router = new Route();
 
 if($_SERVER['REQUEST_METHOD'] == 'GET') {

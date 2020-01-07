@@ -7,6 +7,9 @@
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
+create database `cognilinga`;
+use `cognilinga`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -154,7 +157,7 @@ CREATE TABLE `study_set_flashcard` (
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
   `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` text NOT NULL,
   `status` int(11) NOT NULL,
   `role` int(11) NOT NULL,
   `score` bigint(20) DEFAULT NULL,

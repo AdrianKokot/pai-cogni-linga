@@ -9,12 +9,12 @@ class Route {
       'redirect' => '/cogni'
     ],
     '/logowanie' => [
-      'file' => 'login.html',
+      'file' => 'login.php',
       'title' => 'Logowanie',
       'roles' => ['guest']
     ], 
     '/rejestracja' => [
-      'file' => 'register.html',
+      'file' => 'register.php',
       'title' => 'Rejestracja',
       'roles' => ['guest']
     ],
@@ -24,16 +24,30 @@ class Route {
       'roles' => ['guest']
     ],
     '/cogni' => [
-      'file' => 'main.html',
+      'file' => 'main.php',
       'title' => 'Strona główna',
       'roles' => ['user', 'admin'],
       'redirect' => '/logowanie'
+    ],
+    '/wyloguj' => [
+      'function' => 'logout',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/test' => [
+      'function' => 'test',
+      'roles' => ['guest', 'user', 'admin']
     ]
   ];
 
   private $postRoutes = [
     '/logowanie' => [
       'function' => 'login',
+      'roles' => ['guest'],
+      'redirect' => '/'
+    ],
+    '/rejestracja' => [
+      'function' => 'register',
       'roles' => ['guest'],
       'redirect' => '/'
     ]
@@ -61,7 +75,7 @@ class Route {
       die();
     } else {
 
-      if(!in_array($_SESSION['role'],$this->postRoutes[$requestedRoute]['roles'])) {
+      if(!in_array($_SESSION['role'],$this->postRoutes[$requestedRoute]['roles']) || ($_SESSION['status'] ?? 'active') != 'active') {
         $this->redirectTo($this->postRoutes[$requestedRoute]['redirect']);
       }
 
@@ -78,14 +92,59 @@ class Route {
     header('Location: '.($route ?? '/'));
     die();
   }
+  
+  // FUNKCJA DO TESTÓW
+  private function test() {
+    die();
+  }
 
   // POST FUNCTIONS
   private function login() {
     if(!(isset($_POST['btnSubmit'])&&isset($_POST['username'])&&isset($_POST['password']))) {
       $this->redirectTo('/logowanie');
     }
-    // TODO AUTORYZACJA
-    $_SESSION['role'] = 'user';
+
+    require_once 'Auth.php';
+    $authData = Auth::login($_POST['username'], $_POST['password']);
+    
+    if($authData == null) {
+      Session::setFlash('Nazwa użytkownika lub hasło jest nieprawidłowe.');
+      $this->redirectTo('/logowanie');
+    } 
+
+    require_once 'Guard.php';
+    $_SESSION['role'] = Guard::getRole($authData['role']);
+    $_SESSION['status'] = Guard::getStatus($authData['role']);
+    $_SESSION['userId'] = $authData['id'];
+
+    $this->redirectTo('/');
+  }
+
+  private function register() {
+    if(!(isset($_POST['btnSubmit'])&&isset($_POST['username'])&&isset($_POST['password'])&&isset($_POST['password-confirm']))) {
+      Session::setFlash('Proszę wypełnić wszystkie pola.');
+      $this->redirectTo('/rejestracja');
+    }
+
+    if($_POST['password'] !== $_POST['password-confirm']){
+      Session::setFlash('Hasła nie zgadzają się ze sobą.');
+      $this->redirectTo('/rejestracja');
+    }
+
+    require_once 'Auth.php';
+    $authData = Auth::register($_POST['username'], $_POST['password'], $_POST['register-code'] ?? null);
+    
+    require_once 'Guard.php';
+    $_SESSION['role'] = Guard::getRole($authData['role']);
+    $_SESSION['status'] = Guard::getStatus($authData['role']);
+    $_SESSION['userId'] = $authData['id'];
+
+    $this->redirectTo('/');
+  }
+
+  private function logout() {
+    require_once 'Auth.php';
+    Auth::logout();
     $this->redirectTo('/');
   }
 }
