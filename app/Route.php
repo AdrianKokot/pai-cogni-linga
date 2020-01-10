@@ -94,6 +94,7 @@ class Route extends Controller {
       'redirect' => '/'
     ],
     '/rejestracja' => [
+      'controller' => 'AuthController',
       'function' => 'register',
       'roles' => ['guest'],
       'redirect' => '/'

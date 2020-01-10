@@ -2,19 +2,16 @@
 class Auth {
   // rejestracja nowego użytkownika
   public static function register($login, $password, $code = null) {
-    $db = DB();
-    $role = $db->query("SELECT role FROM register_codes WHERE code = '$code'")->fetch()[0] ?? $db->query("SELECT id FROM role WHERE name = 'user'")->fetch()[0];
-    $status = $db->query("SELECT id FROM status WHERE name = 'active'")->fetch()[0];
+    $role = DB::selectOne("SELECT role FROM register_codes WHERE code = '$code'")["data"][0] ?? DB::selectOne("SELECT id FROM role WHERE name = 'user'")["data"][0];
+    $status = DB::selectOne("SELECT id FROM status WHERE name = 'active'")["data"][0];
 
-    $query = $db->prepare("INSERT INTO user (login, password, role, status) VALUES (:login, :password, $role, $status)");
-    $query->bindParam("login", $login, PDO::PARAM_STR);
     $enc_password = password_hash($password, PASSWORD_ARGON2ID);
-    $query->bindParam("password", $enc_password, PDO::PARAM_STR);
-    $query->execute();
+    $id = DB::insert("INSERT INTO user (login, password, role, status) VALUES (:login, :password, $role, $status)", ["login" => $login, "password" => $enc_password]);
+
     return [
       'role' => $role, //id roli
       'status' => $status, //id statusu
-      'id' => $db->lastInsertId() //id użytkownika
+      'id' => $id //id uzytkownika
     ];
   }
   // autoryzacja użytkownika
