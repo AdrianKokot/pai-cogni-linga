@@ -44,8 +44,8 @@ class Route extends Controller {
       'redirect' => '/'
     ],
     '/dodaj' => [
-      'file' => 'create.php',
-      'title' => 'Tworzenie zestawu',
+      'controller' => 'FlashSetsController',
+      'function' => 'index',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
     ],
@@ -97,6 +97,12 @@ class Route extends Controller {
       'controller' => 'AuthController',
       'function' => 'register',
       'roles' => ['guest'],
+      'redirect' => '/'
+    ],
+    '/dodaj' => [
+      'controller' => 'FlashSetsController',
+      'function' => 'postCreate',
+      'roles' => ['user', 'admin'],
       'redirect' => '/'
     ]
   ];

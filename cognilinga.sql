@@ -133,7 +133,7 @@ CREATE TABLE `study_set` (
   `definition_lang` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `visibility` int(11) NOT NULL DEFAULT 0,
-  `created_date` datetime NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT current_timestamp,
   `points` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -310,6 +310,8 @@ ALTER TABLE `user`
 --
 ALTER TABLE `visibility`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `study_set` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

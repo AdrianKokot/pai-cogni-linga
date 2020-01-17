@@ -7,7 +7,7 @@
       <section>
         <h2>Utwórz nowy zestaw</h2>
         <section id="create">
-          <form action="" id="create-study-set-form">
+          <form method="post" id="create-study-set-form">
             <label>
               Nazwa zestawu:
               <input type="text" name="study-set-name" required maxlength="48">
@@ -20,29 +20,49 @@
               <label>
                 Język pojęcia:
                 <select name="study-set-term-lang">
-                  <option value="en">Angielski</option>
-                  <option value="pl">Polski</option>
+                <?php
+                  foreach($web['languages'] as $lang){
+                    ?>
+                  <option value="<?= $lang['id'] ?>"><?= ucfirst($lang['lang']) ?></option>
+                    <?php
+                  }
+                ?>
                 </select>
               </label>
               <label>
                 Język definicji:
                 <select name="study-set-definition-lang">
-                  <option value="en">Angielski</option>
-                  <option value="pl">Polski</option>
+                <?php
+                  foreach($web['languages'] as $lang){
+                    ?>
+                  <option value="<?= $lang['id'] ?>"><?= ucfirst($lang['lang']) ?></option>
+                    <?php
+                  }
+                ?>
                 </select>
               </label>
               <label>
                 Kategoria zestawu:
                 <select name="study-set-category">
-                  <option value="it">Informatyka</option>
-                  <option value="maths">Matematyka</option>
+                <?php
+                  foreach($web['categories'] as $cat){
+                    ?>
+                  <option value="<?= $cat['id'] ?>"><?= ucfirst($cat['name']) ?></option>
+                    <?php
+                  }
+                ?>
                 </select>
               </label>
               <label>
                 Dostęp do zestawu:
                 <select name="study-set-visibility">
-                  <option value="1">Publiczny</option>
-                  <option value="0">Prywatny</option>
+                <?php
+                  foreach($web['visibilities'] as $vis){
+                    ?>
+                  <option value="<?= $vis['id'] ?>"><?= ucfirst($vis['name']) ?></option>
+                    <?php
+                  }
+                ?>
                 </select>
               </label>
             </div>
@@ -51,8 +71,8 @@
               <section id="new-flashcards" class="c-40">
                 <div class="new-flashcard">
                   <div class="counter">1</div>
-                  <input type="text" name="new-flashcard-term-1" placeholder="pojęcie">
-                  <input type="text" name="new-flashcard-definition-1" placeholder="definicja">
+                  <input type="text" name="new-flashcard-term[]" placeholder="pojęcie">
+                  <input type="text" name="new-flashcard-definition[]" placeholder="definicja">
                 </div>
               </section>
               <div id="createnewdiv"><h2 id="createnew"><i class="fas fa-plus"></i> Dodaj</h2></div>
@@ -77,8 +97,8 @@
     var div = document.createElement("div");
     div.classList.add("new-flashcard");
     div.innerHTML = `<div class="counter">${counter}</div>
-                  <input type="text" name="new-flashcard-term-${counter}" placeholder="pojęcie">
-                  <input type="text" name="new-flashcard-definition-${counter}" placeholder="definicja">`;
+                  <input type="text" name="new-flashcard-term[]" placeholder="pojęcie">
+                  <input type="text" name="new-flashcard-definition[]" placeholder="definicja">`;
     flashcards.append(div);
     counterInput.value = counter;
     if(counter==100){
