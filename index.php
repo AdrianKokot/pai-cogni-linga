@@ -4,7 +4,7 @@ session_start();
 require_once 'app/Session.php';
 require_once 'database/Connection.php';
 DB::configure();
-// DB::fillData();
+DB::fillData();
 
 if(!isset($_SESSION['role'])) $_SESSION['role'] = 'guest';
 

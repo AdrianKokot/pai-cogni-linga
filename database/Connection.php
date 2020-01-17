@@ -15,8 +15,10 @@ class DB {
   }
 
   public static function fillData() {
-    require_once 'Prepare.php';
-    DBInsertData();
+    if(self::selectOne("SELECT * FROM status")["rows"] == 0) {
+      require_once 'Prepare.php';
+      DBInsertData();
+    }
   }
 
   public static function select($sql, Array $data = []) {
