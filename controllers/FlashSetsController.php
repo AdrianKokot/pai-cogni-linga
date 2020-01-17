@@ -15,11 +15,23 @@ class FlashSetsController extends Controller {
   }
 
   public function postCreate() {
-      if(!(isset($_POST['study-set-name']) && isset($_POST['study-set-description']) && isset($_POST['study-set-term-lang']) && isset($_POST['study-set-definition-lang']) && isset($_POST['study-set-category']) && isset($_POST['study-set-visibility']) && count($_POST['new-flashcard-definition']) > 0)){
-          return $this->redirectTo('/');
+    Session::setFormData([
+        'study-set-name' => $_POST['study-set-name'] ?? null, 
+        'study-set-description' => $_POST['study-set-description'] ?? null, 
+        'study-set-term-lang' => $_POST['study-set-term-lang'] ?? null, 
+        'study-set-definition-lang' => $_POST['study-set-definition-lang'] ?? null, 
+        'study-set-category' => $_POST['study-set-category'] ?? null, 
+        'study-set-visibility' => $_POST['study-set-visibility'] ?? null, 
+      ]);
+
+      if(!(isset($_POST['study-set-name']) && isset($_POST['study-set-description']) && isset($_POST['study-set-term-lang']) && isset($_POST['study-set-definition-lang']) && isset($_POST['study-set-category']) && isset($_POST['study-set-visibility']) && count($_POST['new-flashcard-definition']) > 1)){
+        if(count($_POST['new-flashcard-definition']) <=1)  
+            Session::setFlash('Zestaw musi mieć przynajmniej dwie pary fiszek.');
+        else Session::setFlash('Wypełnij wszystkie wymagane pola.');
+        return $this->redirectTo('/dodaj');
       }
       $count = count($_POST['new-flashcard-definition']);
-      if(DB::insert("INSERT INTO study_set (`title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `points`) 
+      $id = DB::insert("INSERT INTO study_set (`title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `points`) 
       VALUES (:title, :createdBy, :flashcardCount, :desc, :termLang, :defLang, :cat, :vis, :points)", [
           'title' => $_POST['study-set-name'], 
           'createdBy' => $_SESSION['userId'], 
@@ -30,10 +42,13 @@ class FlashSetsController extends Controller {
           'cat' => $_POST['study-set-category'], 
           'vis' => $_POST['study-set-visibility'], 
           'points' => $count * 3,
-      ])) {
+      ]);
+      if($id) {
+          unset($_SESSION['formData']);
           return $this->redirectTo("/nauka/$id");
       } else {
-          return $this->redirectTo('/');
+        Session::setFlash('Coś poszło nie tak.');
+        return $this->redirectTo('/dodaj');
       }
   }
 }

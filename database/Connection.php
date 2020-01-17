@@ -39,7 +39,8 @@ class DB {
 
   public static function insert($sql, Array $data = []) {
     $query = self::$db->prepare($sql);
-    $query->execute($data);
-    return self::$db->lastInsertId();
+    if($query->execute($data))
+      return self::$db->lastInsertId();
+    return null;
   }
 }

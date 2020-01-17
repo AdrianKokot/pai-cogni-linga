@@ -6,24 +6,28 @@
     <article>
       <section>
         <h2>Utwórz nowy zestaw</h2>
+        <p class="mb-25 wrong"><?= Session::flash() ?></p>
         <section id="create">
           <form method="post" id="create-study-set-form">
             <label>
               Nazwa zestawu:
-              <input type="text" name="study-set-name" required maxlength="48">
+              <input type="text" name="study-set-name" required maxlength="48" value="<?= Session::old('study-set-name') ?>">
             </label>
             <label>
               Opis zestawu:
-              <textarea name="study-set-description" required maxlength="255"></textarea>
+              <textarea name="study-set-description" required maxlength="255"><?= Session::old('study-set-description') ?></textarea>
             </label>
             <div class="form-group f-wrap">
               <label>
                 Język pojęcia:
                 <select name="study-set-term-lang">
+
                 <?php
+                  
                   foreach($web['languages'] as $lang){
                     ?>
-                  <option value="<?= $lang['id'] ?>"><?= ucfirst($lang['lang']) ?></option>
+                    
+                  <option value="<?= $lang['id'] ?>" <?= $lang['id'] == intval(Session::old('study-set-term-lang')) ? 'selected' : "" ?>><?= ucfirst($lang['lang']) ?></option>
                     <?php
                   }
                 ?>
@@ -35,7 +39,7 @@
                 <?php
                   foreach($web['languages'] as $lang){
                     ?>
-                  <option value="<?= $lang['id'] ?>"><?= ucfirst($lang['lang']) ?></option>
+                  <option value="<?= $lang['id'] ?>" <?= $lang['id'] == intval(Session::old('study-set-definition-lang')) ? 'selected' : "" ?>><?= ucfirst($lang['lang']) ?></option>
                     <?php
                   }
                 ?>
@@ -47,7 +51,7 @@
                 <?php
                   foreach($web['categories'] as $cat){
                     ?>
-                  <option value="<?= $cat['id'] ?>"><?= ucfirst($cat['name']) ?></option>
+                  <option value="<?= $cat['id'] ?>" <?= $cat['id'] == intval(Session::old('study-set-category')) ? 'selected' : "" ?>><?= ucfirst($cat['name']) ?></option>
                     <?php
                   }
                 ?>
@@ -59,7 +63,7 @@
                 <?php
                   foreach($web['visibilities'] as $vis){
                     ?>
-                  <option value="<?= $vis['id'] ?>"><?= ucfirst($vis['name']) ?></option>
+                  <option value="<?= $vis['id'] ?>" <?= $vis['id'] == intval(Session::old('study-set-visibility')) ? 'selected' : "" ?>><?= ucfirst($vis['name']) ?></option>
                     <?php
                   }
                 ?>

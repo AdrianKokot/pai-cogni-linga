@@ -11,4 +11,16 @@ class Session {
     unset($_SESSION['flash']);
     return $message;
   }
+
+  public static function old($key) {
+    if($_SESSION['formData'][$key] ?? null) {
+      $val = $_SESSION['formData'][$key];
+      return $val;
+    }
+    return "";
+  }
+
+  public static function setFormData($data) {
+    $_SESSION['formData'] = $data;
+  }
 }
