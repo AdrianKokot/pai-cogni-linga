@@ -145,4 +145,4 @@
   </section>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>

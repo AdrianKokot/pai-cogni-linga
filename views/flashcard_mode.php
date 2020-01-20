@@ -6,7 +6,7 @@ require_once ROOT_DIR.'/layout/app-nav.php';
     <article>
       <section>
         <p>
-          <a href="/nauka/1"><i class="fas fa-angle-left"></i> <b>Powrót</b></a>
+          <a href="<?= ROOT_URL ?>/nauka/1"><i class="fas fa-angle-left"></i> <b>Powrót</b></a>
         </p>
         <h2 class="lowercase learning">Nazwa zestawu jest bardzo bardzo długa 
           <span class="learning-settings">
@@ -36,7 +36,7 @@ require_once ROOT_DIR.'/layout/app-nav.php';
   </section>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>
 <script>
   const flashcardsArr = [{
     "term": "pokój",

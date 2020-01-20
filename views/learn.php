@@ -8,7 +8,7 @@
       <section>
         <section class="columns2 margin-20">
           <div class="flash-img">
-            <img src="/img/flashcard.jpg" alt="" />
+            <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
           </div>
           <div class="right-side">
             <h2 class="lowercase">Nazwa zestawu jest bardzo bardzo długa</h2>
@@ -84,4 +84,4 @@
   </section>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>

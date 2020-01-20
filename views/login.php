@@ -1,10 +1,10 @@
 <nav id="page-nav">
-  <h1 class="cogni"><a href="index.html">Cogni linga</a></h1>
+  <h1 class="cogni"><a href="<?= ROOT_URL ?>/">Cogni linga</a></h1>
   <div id="account-panel">
     <i class="fas fa-angle-down"></i>
     <div id="account-panel-menu">
-      <a href="/logowanie">Zaloguj się</a>
-      <a href="/rejestracja">Utwórz konto</a>
+      <a href="<?= ROOT_URL ?>/logowanie">Zaloguj się</a>
+      <a href="<?= ROOT_URL ?>/rejestracja">Utwórz konto</a>
     </div>
   </div>
 </nav>
@@ -21,9 +21,9 @@
         <input type="password" name="password" required />
       </label>
       <input type="submit" name="btnSubmit" value="Zaloguj się" />
-      <p class="mt-15">Nie masz konta? <a href="/rejestracja">Zarejestruj się!</a></p>
+      <p class="mt-15">Nie masz konta? <a href="<?= ROOT_URL ?>/rejestracja">Zarejestruj się!</a></p>
     </form>
   </section>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>

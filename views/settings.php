@@ -50,4 +50,4 @@ require_once ROOT_DIR.'/layout/app-nav.php';
   </article>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>

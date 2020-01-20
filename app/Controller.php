@@ -2,7 +2,7 @@
 
 class Controller {
   public function redirectTo($route = null) {
-    header('Location: '.($route ?? '/'));
+    header('Location: '.ROOT_URL.($route ?? '/'));
     die();
   }
 

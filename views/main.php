@@ -7,9 +7,9 @@
       <section>
         <h2>Najnowsze zestawy</h2>
         <section class="recent">
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -18,9 +18,9 @@
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -29,9 +29,9 @@
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -49,9 +49,9 @@
       <section>
         <h2>Ostatnio uczone zestawy</h2>
         <section class="recent">
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -60,9 +60,9 @@
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -71,9 +71,9 @@
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -87,9 +87,9 @@
       <section>
         <h2>Ulubione zestawy</h2>
         <section class="recent">
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -98,9 +98,9 @@
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -109,9 +109,9 @@
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="/nauka/1">
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
             <div class="flash-img">
-              <img src="/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
@@ -189,4 +189,4 @@
   </section>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>

@@ -1,10 +1,10 @@
 <nav id="page-nav">
-  <h1 class="cogni"><a href="/">Cogni linga</a></h1>
+  <h1 class="cogni"><a href="<?= ROOT_URL ?>/">Cogni linga</a></h1>
   <div id="account-panel">
     <i class="fas fa-angle-down"></i>
     <div id="account-panel-menu">
-      <a href="/logowanie">Zaloguj się</a>
-      <a href="/rejestracja">Utwórz konto</a>
+      <a href="<?= ROOT_URL ?>/logowanie">Zaloguj się</a>
+      <a href="<?= ROOT_URL ?>/rejestracja">Utwórz konto</a>
     </div>
   </div>
 </nav>
@@ -14,7 +14,7 @@
       <section>
         <figure>
           <img
-            src="/svg/undraw_exams_g4ow.svg"
+            src="<?= ROOT_URL ?>/svg/undraw_exams_g4ow.svg"
             alt="Ucz się języków obcych"
           />
           <figcaption>Ucz się języków obcych</figcaption>
@@ -23,7 +23,7 @@
       <section>
         <figure>
           <img
-            src="/svg/undraw_podcast_q6p7.svg"
+            src="<?= ROOT_URL ?>/svg/undraw_podcast_q6p7.svg"
             alt="Posłuchaj wymowy. Powtórz."
           />
           <figcaption>Posłuchaj wymowy. Powtórz.</figcaption>
@@ -32,7 +32,7 @@
       <section>
         <figure>
           <img
-            src="/svg/undraw_studying_s3l7.svg"
+            src="<?= ROOT_URL ?>/svg/undraw_studying_s3l7.svg"
             alt="Poznaj słownictwo z interesujących Cię tematów."
           />
           <figcaption>
@@ -49,7 +49,7 @@
       <p>Ucz się szybciej, łatwiej i przyjemniej.</p>
       <p>Przygotuj się do egzaminów w szkole.</p>
       <p>Poszerz swoje słownictwo w interesujących Cię tematach.</p>
-      <a id="try-now" href="/rejestracja">Wypróbuj już teraz</a>
+      <a id="try-now" href="<?= ROOT_URL ?>/rejestracja">Wypróbuj już teraz</a>
     </article>
   </section>
 
@@ -67,10 +67,10 @@
       </section>
       <p class="mt-20 t-center">
         Chcesz odkryć wszystkie te funkcje?
-        <a id="article-register-btn" class="mt-10" href="/rejestracja">Dołącz do nas już teraz!</a>
+        <a id="article-register-btn" class="mt-10" href="<?= ROOT_URL ?>/rejestracja">Dołącz do nas już teraz!</a>
       </p>
     </article>
   </section>
 </section>
 
-<script src="/js/navigation.js"></script>
+<script src="<?= ROOT_URL ?>/js/navigation.js"></script>
