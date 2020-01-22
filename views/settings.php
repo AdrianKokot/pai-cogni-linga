@@ -12,7 +12,7 @@ require_once ROOT_DIR.'/layout/app-nav.php';
             <label>
               Stare hasło:
               <input
-                type="text"
+                type="password"
                 name="old-password"
                 required
                 title="Hasło jest wymagane"

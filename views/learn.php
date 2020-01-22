@@ -11,16 +11,16 @@
             <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
           </div>
           <div class="right-side">
-            <h2 class="lowercase">Nazwa zestawu jest bardzo bardzo długa</h2>
-            <p class="studysetdescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur odio, earum dignissimos, similique rem placeat recusandae doloremque deserunt commodi quas harum fugit quos debitis quae. Officia aliquam nulla consequatur consectetur.</p>
+            <h2 class="lowercase"><?= $web["studySet"]["title"] ?></h2>
+            <p class="studysetdescription"><?= $web["studySet"]["description"] ?></p>
             <p class="studysetinfo">
-              <span>10 pojęć</span>
+              <span><?= $web["studySet"]["flashcard_count"] < 5 ? $web["studySet"]["flashcard_count"]." pojęcia" : $web["studySet"]["flashcard_count"]." pojęć" ?></span>
               <span>|</span>
-              <span>kategoria: informatyka</span>
+              <span>kategoria: <?= $web["studySet"]["categoryName"] ?></span>
               <span>|</span>
-              <span>język: angielski - polski</span>
+              <span>język: <?= $web["studySet"]["term_lang"] ?> - <?= $web["studySet"]["definition_lang"] ?></span>
               <span>|</span>
-              <span>autor: admin</span>
+              <span>autor: <?= $web["studySet"]["created_by"] ?></span>
             </p>
           </div>
         </section>
@@ -28,55 +28,25 @@
         <section class="margin-20">
           <h2 class="lowercase smaller">Wybierz tryb nauki:</h2>
           <p class="studysetinfo normal">
-            <span><b><a href="1/fiszki">Fiszki</a></b></span>
+            <span><b><a href="<?= $web["studySet"]["id"] ?>/fiszki">Fiszki</a></b></span>
             <span>|</span>
-            <span><b><a href="1/pisanie">Pisanie</a></b></span>
+            <span><b><a href="<?= $web["studySet"]["id"] ?>/pisanie">Pisanie</a></b></span>
           </p>
         </section>
         
         <section>
           <h2 class="lowercase smaller">Wszystkie pojęcia w zestawie:</h2>
           <section id="new-flashcards" class="c-40 show">
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
-            <div class="new-flashcard">
-              <span>bardzo trudne słówko</span>
-              <span>-</span>
-              <span>jeszcze trudniejsza definicja</span>
-            </div>
+          <?php
+            foreach($web['flashcards'] as $flashcard) {
+              ?>
+              <div class="new-flashcard">
+                <span><?= $flashcard["term"] ?></span>
+                <span>-</span>
+                <span><?= $flashcard["definition"] ?></span>
+              </div>
+          <?php  }
+          ?>
           </section>
         </section>
       </section>

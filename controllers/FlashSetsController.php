@@ -30,6 +30,7 @@ class FlashSetsController extends Controller {
         else Session::setFlash('Wypełnij wszystkie wymagane pola.');
         return $this->redirectTo('/dodaj');
       }
+
       $count = count($_POST['new-flashcard-definition']);
       $id = DB::insert("INSERT INTO study_set (`title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `points`) 
       VALUES (:title, :createdBy, :flashcardCount, :desc, :termLang, :defLang, :cat, :vis, :points)", [
@@ -43,6 +44,13 @@ class FlashSetsController extends Controller {
           'vis' => $_POST['study-set-visibility'], 
           'points' => $count * 3,
       ]);
+
+      foreach($_POST["new-flashcard-term"] as $key => $newFlashcard) {
+        $fId = DB::insert("INSERT INTO flashcard (`term`, `definition`) VALUES (:term, :definition)", ['term' => $newFlashcard, 'definition' => $_POST["new-flashcard-definition"][$key]]);
+        DB::insert("INSERT INTO study_set_flashcard VALUES (:flashcardId, :setId)", ['flashcardId' => $fId, 'setId' => $id]);
+      }
+
+
       if($id) {
           unset($_SESSION['formData']);
           return $this->redirectTo("/nauka/$id");
