@@ -4,7 +4,7 @@
 <section>
   <section id="app-panel">
     <article>
-      <section><a href=""><strong class="button-accent"><i class="fas fa-star"></i> Dodaj do ulubionych</strong></a><a href="1/edytuj"><strong class="button-accent"><i class="fas fa-pen"></i> Edytuj</strong></a></section>
+      <section><a href="/nauka/<?= $web["studySet"]["id"]?>/ulubione"><strong class="button-accent <?= $web["studySet"]["favourite"] == 1 ? "fav" : ""?>"><i class="fas fa-star"></i> Dodaj do ulubionych</strong></a><a href="1/edytuj"><strong class="button-accent"><i class="fas fa-pen"></i> Edytuj</strong></a></section>
       <section>
         <section class="columns2 margin-20">
           <div class="flash-img">

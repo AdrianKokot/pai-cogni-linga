@@ -498,6 +498,11 @@ h2.load-more:hover {
   cursor: pointer;
   flex-grow: 1;
   text-align: center;
+  text-transform: lowercase;
+}
+
+#categories .category-prev::first-letter {
+  text-transform: uppercase;
 }
 
 #ranking .user-prev {
@@ -1141,6 +1146,11 @@ summary {
   color: #525868;
   transition: .3s;
   cursor: pointer;
+}
+
+.button-accent.fav i {
+  color: gold;
+  -webkit-text-stroke: 2px #525868;
 }
 
 .button-accent:hover {

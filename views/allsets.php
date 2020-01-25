@@ -7,138 +7,24 @@
       <section>
         <h2>Wszystkie zestawy</h2>
         <section class="recent">
-          <a class="flash-prev" href="learn.html">
+          <?php
+            foreach($web["allSets"] as $set){
+          ?>
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
+              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
+              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
+              <h3><?= $set["title"] ?></h3>
               <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
+                <span class="flash-count">Zestaw zawiera <?= $set["flashcard_count"] > 4 ? $set["flashcard_count"]." pojęć" : $set["flashcard_count"] == 1 ? $set["flashcard_count"]." pojęcie" : $set["flashcard_count"]." pojęcia"?></span>
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="learn.html">
-            <div class="flash-img">
-              <img src="img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
+          <?php
+            }
+          ?>
         </section>
       </section>
     </article>

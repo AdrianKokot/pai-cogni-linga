@@ -32,10 +32,10 @@ class Route extends Controller {
       'roles' => ['guest']
     ],
     '/cogni' => [
-      'file' => 'main.php',
-      'title' => 'Strona główna',
       'roles' => ['user', 'admin'],
-      'redirect' => '/logowanie'
+      'redirect' => '/logowanie',
+      'controller' => 'HomeController',
+      'function' => 'main'
     ],
     '/wyloguj' => [
       'controller' => 'AuthController',
@@ -50,8 +50,8 @@ class Route extends Controller {
       'redirect' => '/'
     ],
     '/wszystkie-fiszki' => [
-      'file' => 'allsets.php',
-      'title' => 'Wszystkie fiszki',
+      'controller' => 'HomeController',
+      'function' => 'allsets',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
     ],
@@ -62,8 +62,8 @@ class Route extends Controller {
       'redirect' => '/'
     ],
     '/moje-fiszki' => [
-      'file' => 'usersets.php',
-      'title' => 'Moje fiszki',
+      'controller' => 'HomeController',
+      'function' => 'usersets',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
     ],

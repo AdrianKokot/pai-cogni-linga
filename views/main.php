@@ -6,143 +6,101 @@
     <article>
       <section>
         <h2>Najnowsze zestawy</h2>
+        <!-- <?php
+          print_r($web);
+        ?> -->
         <section class="recent">
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
+          <?php
+            foreach($web["allSets"] as $set){
+          ?>
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
+              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
               <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
+              <h3><?= $set["title"] ?></h3>
               <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
+                <span class="flash-count">Zestaw zawiera <?= $set["flashcard_count"] > 4 ? $set["flashcard_count"]." pojęć" : $set["flashcard_count"] == 1 ? $set["flashcard_count"]." pojęcie" : $set["flashcard_count"]." pojęcia"?></span>
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
-            <div class="flash-img">
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
-            <div class="flash-img">
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
+          <?php
+            }
+          ?>
         </section>
         <h2 class="load-more">
-          Wyświetl więcej
+          <a href="/wszystkie-fiszki">Wyświetl więcej</a>
           <span class="icon"><i class="fas fa-angle-down"></i></span>
         </h2>
       </section>
+      <?php
+        if(!empty($web["historySets"])){
+      ?>
       <section>
         <h2>Ostatnio uczone zestawy</h2>
         <section class="recent">
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
+          <?php
+            foreach($web["historySets"] as $set){
+          ?>
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
+              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
               <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
+              <h3><?= $set["title"] ?></h3>
               <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
+                <span class="flash-count">Zestaw zawiera <?= $set["flashcard_count"] > 4 ? $set["flashcard_count"]." pojęć" : $set["flashcard_count"] == 1 ? $set["flashcard_count"]." pojęcie" : $set["flashcard_count"]." pojęcia"?></span>
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
-            <div class="flash-img">
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
-            <div class="flash-img">
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
+          <?php
+            }
+          ?>
         </section>
       </section>
+      <?php
+        }
+        if(!empty($web["favouriteSets"])){
+      ?>
       <section>
         <h2>Ulubione zestawy</h2>
         <section class="recent">
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
+          <?php
+            foreach($web["favouriteSets"] as $set){
+          ?>
+          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
+              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
               <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
             </div>
             <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
+              <h3><?= $set["title"] ?></h3>
               <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
+                <span class="flash-count">Zestaw zawiera <?= $set["flashcard_count"] > 4 ? $set["flashcard_count"]." pojęć" : $set["flashcard_count"] == 1 ? $set["flashcard_count"]." pojęcie" : $set["flashcard_count"]." pojęcia"?></span>
               </p>
             </div>
           </a>
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
-            <div class="flash-img">
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
-          <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/1">
-            <div class="flash-img">
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
-            </div>
-            <div class="flash-description">
-              <h3>Nazwa zestawu jest bardzo bardzo długa</h3>
-              <p>
-                <span class="flash-count">Zestaw zawiera 10 pojęć</span>
-              </p>
-            </div>
-          </a>
+          <?php
+            }
+          ?>
         </section>
       </section>
+      <?php
+        }
+      ?>
       <section>
         <h2>Kategorie</h2>
         <section id="categories">
-          <div class="category-prev">
-            <h3>Nazwa kategorii</h3>
-          </div>
-          <div class="category-prev">
-            <h3>Nazwa kategorii</h3>
-          </div>
-          <div class="category-prev">
-            <h3>Nazwa kategorii</h3>
-          </div>
-          <div class="category-prev">
-            <h3>Nazwa kategorii</h3>
-          </div>
-          <div class="category-prev">
-            <h3>Nazwa kategorii</h3>
-          </div>
-          <div class="category-prev">
-            <h3>Nazwa kategorii</h3>
-          </div>
+        <?php
+          foreach($web["categories"] as $cat) {
+        ?>
+          <a href="" class="category-prev">
+            <h3><?= $cat["name"] ?></h3>
+          </a>
+        <?php  }
+        ?>
         </section>
       </section>
       <section>
