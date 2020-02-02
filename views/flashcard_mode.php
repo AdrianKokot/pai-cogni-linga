@@ -6,9 +6,9 @@ require_once ROOT_DIR.'/layout/app-nav.php';
     <article>
       <section>
         <p>
-          <a href="<?= ROOT_URL ?>/nauka/1"><i class="fas fa-angle-left"></i> <b>Powrót</b></a>
+          <a href="<?= ROOT_URL ?>/nauka/<?= $web['studySet']['id']?>"><i class="fas fa-angle-left"></i> <b>Powrót</b></a>
         </p>
-        <h2 class="lowercase learning">Nazwa zestawu jest bardzo bardzo długa 
+        <h2 class="lowercase learning"><?= $web['studySet']['title'] ?>
           <span class="learning-settings">
             <span class="btn" id="progress-reset" title="Resetuj postęp"><i class="fas fa-sync-alt"></i></span>
             <span class="btn" id="change-term-definition" title="Zmień kolejność wyświetlania definicji i pojęcia"><i class="fas fa-exchange-alt"></i></span>
@@ -38,26 +38,17 @@ require_once ROOT_DIR.'/layout/app-nav.php';
 
 <script src="<?= ROOT_URL ?>/js/navigation.js"></script>
 <script>
-  const flashcardsArr = [{
-    "term": "pokój",
-    "definition": "room"
-  },{
-    "term": "mieszkanie",
-    "definition": "flat"
-  },{
-    "term": "postęp",
-    "definition": "progress"
-  }];
+  const flashcardsArr = <?= json_encode($web['flashcards']) ?>;
   flashcardsArr.reverse();
   const flashcardsLangs = {
-    "termLang": "pl",
-    "definitionLang": "en"
+    "termLang": "<?= $web['studySet']['term_lang']?>",
+    "definitionLang": "<?= $web['studySet']['definition_lang']?>"
   }			
 
   const langs = {
-    "pl": "pl-PL",
-    "en": "en-US",
-    "de": "de-DE"
+    "polski": "pl-PL",
+    "angielski": "en-US",
+    "niemiecki": "de-DE"
   }
 
   function speech(txt, lang) {

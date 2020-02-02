@@ -6,15 +6,14 @@ require_once ROOT_DIR.'/layout/app-nav.php';
     <article>
       <section>
         <p>
-          <a href="<?= ROOT_URL ?>/nauka/1"><i class="fas fa-angle-left"></i> <strong>Powrót</strong></a>
+          <a href="<?= ROOT_URL ?>/nauka/<?= $web['studySet']['id']?>"><i class="fas fa-angle-left"></i> <strong>Powrót</strong></a>
         </p>
-        <h2 class="lowercase learning">Nazwa zestawu jest bardzo bardzo długa 
+        <h2 class="lowercase learning"><?= $web['studySet']['title'] ?>
           <span class="learning-settings">
             <span class="btn" id="progress-reset" title="Resetuj postęp"><i class="fas fa-sync-alt"></i></span>
             <span class="btn" id="change-term-definition" title="Zmień kolejność wyświetlania definicji i pojęcia"><i class="fas fa-exchange-alt"></i></span>
           </span>
         </h2>
-        
         <p><strong>Twój postęp: <span class="flashcards-counter"></span></strong></p>
         <section id="learn-panel" class="flashcards-panel-write">
           <section class="flashcards-panel flashcards-panel-write">
@@ -35,21 +34,8 @@ require_once ROOT_DIR.'/layout/app-nav.php';
 
 <script src="<?= ROOT_URL ?>/js/navigation.js"></script>
 <script>
-  const flashcardsArr = [{
-    "term": "pokój",
-    "definition": "room"
-  },{
-    "term": "mieszkanie",
-    "definition": "flat"
-  },{
-    "term": "postęp",
-    "definition": "progress"
-  }];
+  const flashcardsArr = <?= json_encode($web['flashcards']) ?>;
   flashcardsArr.reverse();
-  const flashcardsLangs = {
-    "termLang": "pl",
-    "definitionLang": "en"
-  }			
 
   function renderFlashcards(termFirst) {
     const flashcardView = document.querySelector(".flashcard-view");

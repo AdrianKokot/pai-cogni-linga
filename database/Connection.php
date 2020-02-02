@@ -26,7 +26,7 @@ class DB {
     $query->execute($data);
     return [
       'rows' => $query->rowCount(),
-      'data' => $query->fetchAll()
+      'data' => $query->fetchAll(PDO::FETCH_ASSOC)
     ];
   }
 
@@ -35,7 +35,7 @@ class DB {
     $query->execute($data);
     return [
       'rows' => $query->rowCount(),
-      'data' => $query->fetch()
+      'data' => $query->fetch(PDO::FETCH_ASSOC)
     ];
   }
 
