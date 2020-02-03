@@ -3,10 +3,10 @@
 
 class Guard {
   public static function getRole($id) {
-    return DB::selectOne("SELECT name FROM role WHERE id = $id")['data'][0];
+    return DB::selectOne("SELECT name FROM roles WHERE id = $id")['data']['name'];
   }
   public static function getStatus($id) {
-    return DB::selectOne("SELECT name FROM status WHERE id = $id")['data'][0];
+    return DB::selectOne("SELECT name FROM statuses WHERE id = $id")['data']['name'];
   }
 
   public static function checkAccess($role, $rolesArr) {

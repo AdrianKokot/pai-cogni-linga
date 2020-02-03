@@ -6,16 +6,20 @@ define("DATABASE", "cognilinga");
 
 class DB {
   private static $db = null;
+  public static $vPublicID = null;
+
   public static function configure() {
     self::$db = new PDO('mysql:host='.HOST.';dbname='.DATABASE.'', USER, PASSWORD, [
       PDO::ATTR_EMULATE_PREPARES => false,
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
       PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
     ]);
+
+    self::$vPublicID = DB::selectOne("SELECT id FROM visibilities WHERE name = 'publiczny'")['data']['id'];
   }
 
   public static function fillData() {
-    if(self::selectOne("SELECT * FROM status")["rows"] == 0) {
+    if(self::selectOne("SELECT * FROM statuses")["rows"] == 0) {
       require_once 'Prepare.php';
       DBInsertData();
     }
@@ -41,6 +45,14 @@ class DB {
 
   public static function insert($sql, Array $data = []) {
     $query = self::$db->prepare($sql);
+
+    $dataFile = file_get_contents('queries.txt');
+    $dataFile .= "\n\n$sql\n\n";
+    foreach($data as $key => $item) {
+      $dataFile .= "$key = $item\n";
+    }
+    file_put_contents('queries.txt', $dataFile);
+    
     if($query->execute($data))
       return self::$db->lastInsertId();
     return null;

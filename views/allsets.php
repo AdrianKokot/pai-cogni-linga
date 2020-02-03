@@ -5,7 +5,7 @@
   <section id="app-panel">
     <article>
       <section>
-        <h2>Wszystkie zestawy</h2>
+        <h2><?= isset($web['header']) ? $web['header'] : "Wszystkie zestawy" ?></h2>
         <section class="recent">
           <?php
             foreach($web["allSets"] as $set){

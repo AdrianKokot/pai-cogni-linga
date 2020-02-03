@@ -56,8 +56,8 @@ class Route extends Controller {
       'redirect' => '/'
     ],
     '/szukaj' => [
-      'file' => 'search.php',
-      'title' => 'Szukaj fiszek',
+      'controller' => 'HomeController',
+      'function' => 'search',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
     ],
@@ -77,11 +77,17 @@ class Route extends Controller {
       'controller' => 'LearnController',
       'function' => 'learn',
       'roles' => ['user', 'admin'],
-      'redirect' => 'notfound'
+      'redirect' => '/'
     ],
     '/test' => [
       'function' => 'test',
       'roles' => ['guest', 'user', 'admin']
+    ],
+    '/kategoria' => [
+      'function' => 'category',
+      'controller' => 'HomeController',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
     ]
   ];
 

@@ -8,9 +8,9 @@ class FlashSetsController extends Controller {
 
   public function index() {
     return $this->view('create.php', ['pageTitle' => "Tworzenie zestawu", 'web' => [
-        'categories' => DB::select("SELECT * FROM category")["data"] ?? null,
-        'languages' => DB::select("SELECT * FROM language")["data"] ?? null,
-        'visibilities' => DB::select("SELECT * FROM visibility")["data"] ?? null
+        'categories' => DB::select("SELECT * FROM categories")["data"] ?? null,
+        'languages' => DB::select("SELECT * FROM languages")["data"] ?? null,
+        'visibilities' => DB::select("SELECT * FROM visibilities")["data"] ?? null
     ]]);
   }
 
@@ -32,7 +32,7 @@ class FlashSetsController extends Controller {
       }
 
       $count = count($_POST['new-flashcard-definition']);
-      $id = DB::insert("INSERT INTO study_set (`title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `points`) 
+      $id = DB::insert("INSERT INTO study_sets (`title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `points`) 
       VALUES (:title, :createdBy, :flashcardCount, :desc, :termLang, :defLang, :cat, :vis, :points)", [
           'title' => $_POST['study-set-name'], 
           'createdBy' => $_SESSION['userId'], 
@@ -46,8 +46,8 @@ class FlashSetsController extends Controller {
       ]);
 
       foreach($_POST["new-flashcard-term"] as $key => $newFlashcard) {
-        $fId = DB::insert("INSERT INTO flashcard (`term`, `definition`) VALUES (:term, :definition)", ['term' => $newFlashcard, 'definition' => $_POST["new-flashcard-definition"][$key]]);
-        DB::insert("INSERT INTO study_set_flashcard VALUES (:flashcardId, :setId)", ['flashcardId' => $fId, 'setId' => $id]);
+        $fId = DB::insert("INSERT INTO flashcards (`term`, `definition`) VALUES (:term, :definition)", ['term' => $newFlashcard, 'definition' => $_POST["new-flashcard-definition"][$key]]);
+        DB::insert("INSERT INTO study_set_flashcards VALUES (:flashcardId, :setId)", ['flashcardId' => $fId, 'setId' => $id]);
       }
 
 

@@ -35,6 +35,11 @@ class AuthController extends Controller {
       $this->redirectTo('/rejestracja');
     }
 
+    if(DB::selectOne("SELECT * FROM users WHERE login = :login", ["login" => $_POST['username']])["rows"] > 0) {
+      Session::setFlash('Nazwa użytkownika jest już w użyciu.');
+      $this->redirectTo('/rejestracja');
+    }
+
     $authData = Auth::register($_POST['username'], $_POST['password'], $_POST['register-code'] ?? null);
     
     $_SESSION['role'] = Guard::getRole($authData['role']);

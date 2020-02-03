@@ -1,0 +1,56 @@
+
+
+INSERT INTO study_sets (`title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `points`) 
+      VALUES (:title, :createdBy, :flashcardCount, :desc, :termLang, :defLang, :cat, :vis, :points)
+
+title = Zestaw 4
+createdBy = 1
+flashcardCount = 3
+desc = Zestaw 4
+termLang = 1
+defLang = 2
+cat = 1
+vis = 1
+points = 9
+
+
+INSERT INTO flashcards (`term`, `definition`) VALUES (:term, :definition)
+
+term = Term 1
+definition = Definicja 1
+
+
+INSERT INTO study_set_flashcards VALUES (:flashcardId, :setId)
+
+flashcardId = 9
+setId = 4
+
+
+INSERT INTO flashcards (`term`, `definition`) VALUES (:term, :definition)
+
+term = Term 2
+definition = Definicja 2
+
+
+INSERT INTO study_set_flashcards VALUES (:flashcardId, :setId)
+
+flashcardId = 10
+setId = 4
+
+
+INSERT INTO flashcards (`term`, `definition`) VALUES (:term, :definition)
+
+term = Term 3
+definition = Definicja 3
+
+
+INSERT INTO study_set_flashcards VALUES (:flashcardId, :setId)
+
+flashcardId = 11
+setId = 4
+
+
+INSERT INTO learning_history VALUES (:userId, :id, 0, 0, null)
+
+userId = 1
+id = 4

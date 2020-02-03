@@ -6,9 +6,6 @@
     <article>
       <section>
         <h2>Najnowsze zestawy</h2>
-        <!-- <?php
-          print_r($web);
-        ?> -->
         <section class="recent">
           <?php
             foreach($web["allSets"] as $set){
@@ -96,7 +93,7 @@
         <?php
           foreach($web["categories"] as $cat) {
         ?>
-          <a href="" class="category-prev">
+          <a href="/kategoria/<?= $cat["name"] ?>" class="category-prev">
             <h3><?= $cat["name"] ?></h3>
           </a>
         <?php  }

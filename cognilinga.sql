@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -50,10 +50,10 @@ CREATE TABLE `favourite_sets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `flashcard`
+-- Table structure for table `flashcards`
 --
 
-CREATE TABLE `flashcard` (
+CREATE TABLE `flashcards` (
   `id` bigint(20) NOT NULL,
   `term` varchar(255) NOT NULL,
   `definition` varchar(255) NOT NULL
@@ -62,10 +62,10 @@ CREATE TABLE `flashcard` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `language`
+-- Table structure for table `languages`
 --
 
-CREATE TABLE `language` (
+CREATE TABLE `languages` (
   `id` int(11) NOT NULL,
   `lang` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -98,10 +98,10 @@ CREATE TABLE `register_codes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Table structure for table `roles`
 --
 
-CREATE TABLE `role` (
+CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -109,10 +109,10 @@ CREATE TABLE `role` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status`
+-- Table structure for table `statuses`
 --
 
-CREATE TABLE `status` (
+CREATE TABLE `statuses` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -120,10 +120,10 @@ CREATE TABLE `status` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `study_set`
+-- Table structure for table `study_sets`
 --
 
-CREATE TABLE `study_set` (
+CREATE TABLE `study_sets` (
   `id` bigint(20) NOT NULL,
   `title` varchar(50) NOT NULL,
   `created_by` bigint(20) NOT NULL,
@@ -140,10 +140,10 @@ CREATE TABLE `study_set` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `study_set_flashcard`
+-- Table structure for table `study_set_flashcards`
 --
 
-CREATE TABLE `study_set_flashcard` (
+CREATE TABLE `study_set_flashcards` (
   `flashcard` bigint(20) NOT NULL,
   `study_set` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -151,10 +151,10 @@ CREATE TABLE `study_set_flashcard` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` bigint(20) NOT NULL,
   `login` varchar(50) NOT NULL,
   `password` text NOT NULL,
@@ -167,10 +167,10 @@ CREATE TABLE `user` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `visibility`
+-- Table structure for table `visibilities`
 --
 
-CREATE TABLE `visibility` (
+CREATE TABLE `visibilities` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -180,9 +180,9 @@ CREATE TABLE `visibility` (
 --
 
 --
--- Indexes for table `category`
+-- Indexes for table `categories`
 --
-ALTER TABLE `category`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -193,15 +193,15 @@ ALTER TABLE `favourite_sets`
   ADD KEY `favourite_sets_fk1` (`study_set`);
 
 --
--- Indexes for table `flashcard`
+-- Indexes for table `flashcards`
 --
-ALTER TABLE `flashcard`
+ALTER TABLE `flashcards`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `language`
+-- Indexes for table `languages`
 --
-ALTER TABLE `language`
+ALTER TABLE `languages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -219,22 +219,22 @@ ALTER TABLE `register_codes`
   ADD KEY `register_codes_fk0` (`role`);
 
 --
--- Indexes for table `role`
+-- Indexes for table `roles`
 --
-ALTER TABLE `role`
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `status`
+-- Indexes for table `statuses`
 --
-ALTER TABLE `status`
+ALTER TABLE `statuses`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `study_set`
+-- Indexes for table `study_sets`
 --
-ALTER TABLE `study_set`
+ALTER TABLE `study_sets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `study_set_fk1` (`created_by`),
   ADD KEY `study_set_fk2` (`term_lang`),
@@ -243,25 +243,25 @@ ALTER TABLE `study_set`
   ADD KEY `study_set_fk5` (`visibility`);
 
 --
--- Indexes for table `study_set_flashcard`
+-- Indexes for table `study_set_flashcards`
 --
-ALTER TABLE `study_set_flashcard`
+ALTER TABLE `study_set_flashcards`
   ADD KEY `study_set_flashcard_fk0` (`flashcard`),
   ADD KEY `study_set_flashcard_fk1` (`study_set`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `login` (`login`),
   ADD KEY `user_fk0` (`status`),
   ADD KEY `user_fk1` (`role`);
 
 --
--- Indexes for table `visibility`
+-- Indexes for table `visibilities`
 --
-ALTER TABLE `visibility`
+ALTER TABLE `visibilities`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
@@ -270,48 +270,48 @@ ALTER TABLE `visibility`
 --
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT for table `categories`
 --
-ALTER TABLE `category`
+ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `flashcard`
+-- AUTO_INCREMENT for table `flashcards`
 --
-ALTER TABLE `flashcard`
+ALTER TABLE `flashcards`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `language`
+-- AUTO_INCREMENT for table `languages`
 --
-ALTER TABLE `language`
+ALTER TABLE `languages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `role`
+-- AUTO_INCREMENT for table `roles`
 --
-ALTER TABLE `role`
+ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `status`
+-- AUTO_INCREMENT for table `statuses`
 --
-ALTER TABLE `status`
+ALTER TABLE `statuses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `visibility`
+-- AUTO_INCREMENT for table `visibilities`
 --
-ALTER TABLE `visibility`
+ALTER TABLE `visibilities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `study_set` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `study_sets` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -321,45 +321,45 @@ ALTER TABLE `study_set` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 -- Constraints for table `favourite_sets`
 --
 ALTER TABLE `favourite_sets`
-  ADD CONSTRAINT `favourite_sets_fk0` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `favourite_sets_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_set` (`id`);
+  ADD CONSTRAINT `favourite_sets_fk0` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `favourite_sets_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_sets` (`id`);
 
 --
 -- Constraints for table `learning_history`
 --
 ALTER TABLE `learning_history`
-  ADD CONSTRAINT `learning_history_fk0` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `learning_history_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_set` (`id`);
+  ADD CONSTRAINT `learning_history_fk0` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `learning_history_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_sets` (`id`);
 
 --
 -- Constraints for table `register_codes`
 --
 ALTER TABLE `register_codes`
-  ADD CONSTRAINT `register_codes_fk0` FOREIGN KEY (`role`) REFERENCES `role` (`id`);
+  ADD CONSTRAINT `register_codes_fk0` FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
 
 --
--- Constraints for table `study_set`
+-- Constraints for table `study_sets`
 --
-ALTER TABLE `study_set`
-  ADD CONSTRAINT `study_set_fk1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `study_set_fk2` FOREIGN KEY (`term_lang`) REFERENCES `language` (`id`),
-  ADD CONSTRAINT `study_set_fk3` FOREIGN KEY (`definition_lang`) REFERENCES `language` (`id`),
-  ADD CONSTRAINT `study_set_fk4` FOREIGN KEY (`category`) REFERENCES `category` (`id`),
-  ADD CONSTRAINT `study_set_fk5` FOREIGN KEY (`visibility`) REFERENCES `visibility` (`id`);
+ALTER TABLE `study_sets`
+  ADD CONSTRAINT `study_set_fk1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `study_set_fk2` FOREIGN KEY (`term_lang`) REFERENCES `languages` (`id`),
+  ADD CONSTRAINT `study_set_fk3` FOREIGN KEY (`definition_lang`) REFERENCES `languages` (`id`),
+  ADD CONSTRAINT `study_set_fk4` FOREIGN KEY (`category`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `study_set_fk5` FOREIGN KEY (`visibility`) REFERENCES `visibilities` (`id`);
 
 --
--- Constraints for table `study_set_flashcard`
+-- Constraints for table `study_set_flashcards`
 --
-ALTER TABLE `study_set_flashcard`
-  ADD CONSTRAINT `study_set_flashcard_fk0` FOREIGN KEY (`flashcard`) REFERENCES `flashcard` (`id`),
-  ADD CONSTRAINT `study_set_flashcard_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_set` (`id`);
+ALTER TABLE `study_set_flashcards`
+  ADD CONSTRAINT `study_set_flashcard_fk0` FOREIGN KEY (`flashcard`) REFERENCES `flashcards` (`id`),
+  ADD CONSTRAINT `study_set_flashcard_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_sets` (`id`);
 
 --
--- Constraints for table `user`
+-- Constraints for table `users`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_fk0` FOREIGN KEY (`status`) REFERENCES `status` (`id`),
-  ADD CONSTRAINT `user_fk1` FOREIGN KEY (`role`) REFERENCES `role` (`id`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `user_fk0` FOREIGN KEY (`status`) REFERENCES `statuses` (`id`),
+  ADD CONSTRAINT `user_fk1` FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

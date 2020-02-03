@@ -63,7 +63,7 @@
         <p>Odsłuch wymowy</p>
         <p>Tworzenie nowych fiszek</p>
         <p>Tworzenie zestawów nauki grupujących fiszki</p>
-        <p>Ranking globalny i tygodniowy</p>
+        <p>Ranking globalny</p>
       </section>
       <p class="mt-20 t-center">
         Chcesz odkryć wszystkie te funkcje?

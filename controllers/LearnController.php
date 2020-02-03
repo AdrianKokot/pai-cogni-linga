@@ -4,15 +4,19 @@ class LearnController extends Controller {
   public function learn() {
     try {
       $id = $_SESSION['routeOther'][0];
+
+      $publicId = DB::$vPublicID;
     
-      $flashcardSet = DB::selectOne("SELECT ss.id, title, flashcard_count, created_by, c.name as 'categoryName', description, term_lang, definition_lang FROM study_set as ss join category as c on c.id = ss.category WHERE ss.id = :id", ['id' => $id]);
-      $flashcardSet["data"]["term_lang"] = DB::selectOne("SELECT lang FROM language WHERE id = :id", ["id" => $flashcardSet["data"]["term_lang"]])["data"]["lang"];
-      $flashcardSet["data"]["definition_lang"] = DB::selectOne("SELECT lang FROM language WHERE id = :id", ["id" => $flashcardSet["data"]["definition_lang"]])["data"]["lang"];
-      $flashcardSet["data"]["created_by"] = DB::selectOne("SELECT login FROM user WHERE id = :id", ["id" => $flashcardSet["data"]["created_by"]])["data"]["login"];
+      $flashcardSet = DB::selectOne("SELECT ss.id, title, flashcard_count, created_by, c.name as 'categoryName', visibility, description, term_lang, definition_lang FROM study_sets as ss join categories as c on c.id = ss.category WHERE ss.id = :id", ['id' => $id]);
+      if($flashcardSet['rows'] == 0 || ($flashcardSet['data']['visibility'] != $publicId && $flashcardSet['data']['created_by'] != $_SESSION["userId"])) throw new Exception();
+
+      $flashcardSet["data"]["term_lang"] = DB::selectOne("SELECT lang FROM languages WHERE id = :id", ["id" => $flashcardSet["data"]["term_lang"]])["data"]["lang"];
+      $flashcardSet["data"]["definition_lang"] = DB::selectOne("SELECT lang FROM languages WHERE id = :id", ["id" => $flashcardSet["data"]["definition_lang"]])["data"]["lang"];
+      $flashcardSet["data"]["created_by"] = DB::selectOne("SELECT login FROM users WHERE id = :id", ["id" => $flashcardSet["data"]["created_by"]])["data"]["login"];
   
       $flashcardSet["data"]["favourite"] = DB::select("SELECT * FROM favourite_sets WHERE user = :userId and study_set = :studySet", ["userId" => $_SESSION['userId'], 'studySet' => $id])["rows"];
   
-      $flashcards = DB::select("SELECT id, term, definition FROM study_set_flashcard as ssf join flashcard as f on ssf.flashcard = f.id WHERE ssf.study_set = :id", ["id" => $id]);
+      $flashcards = DB::select("SELECT id, term, definition FROM study_set_flashcards as ssf join flashcards as f on ssf.flashcard = f.id WHERE ssf.study_set = :id", ["id" => $id]);
   
       $routeData = [
         'pageTitle' => $flashcardSet["data"]["title"],
@@ -34,11 +38,11 @@ class LearnController extends Controller {
           case 'edytuj': return $this->edit($id); break;
           case 'ulubione': return $this->favourite($id); break;
           case 'postep': return $this->progress($id); break;
-          default: return $this->view('notfound');
+          default: return $this->abort();
         }
       }
     } catch(Exception $e) {
-      return $this->redirectTo('notfound');
+      return $this->abort();
     }
     die();
   }

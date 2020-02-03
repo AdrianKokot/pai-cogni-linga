@@ -14,4 +14,8 @@ class Controller {
     require_once ROOT_DIR.'/layout/footer.php';
     die();
   }
+
+  public function abort(){
+    return $this->view('notfound.html');
+  }
 }
