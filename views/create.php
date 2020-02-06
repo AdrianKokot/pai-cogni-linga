@@ -73,11 +73,25 @@
             <section>
               <h2>Fiszki:</h2>
               <section id="new-flashcards" class="c-40">
+                <?php
+                  $arrTerm = Session::old('new-flashcard-term') ?? null;
+                  $arrDef = Session::old('new-flashcard-definition') ?? null;
+                  $count = $arrTerm ? count($arrTerm) : 0;
+                  if($count != 0){
+                  for($i = 0; $i<$count; $i++) {
+                ?>
+                  <div class="new-flashcard">
+                    <div class="counter"><?= $i + 1 ?></div>
+                    <input type="text" name="new-flashcard-term[]" placeholder="pojęcie" value="<?= $arrTerm[$i] ?>">
+                    <input type="text" name="new-flashcard-definition[]" placeholder="definicja" value="<?= $arrDef[$i] ?>">
+                  </div>
+                <?php }} else {?>
                 <div class="new-flashcard">
                   <div class="counter">1</div>
                   <input type="text" name="new-flashcard-term[]" placeholder="pojęcie">
                   <input type="text" name="new-flashcard-definition[]" placeholder="definicja">
                 </div>
+                <?php } ?>
               </section>
               <div id="createnewdiv"><h2 id="createnew"><i class="fas fa-plus"></i> Dodaj</h2></div>
             </section>
@@ -95,7 +109,7 @@
   const createNew = document.querySelector("#createnew");
   const flashcards = document.querySelector("#new-flashcards");
   const counterInput = document.querySelector("#flashcard-counter");
-  let counter = 1;
+  let counter = <?= $count != 0 ? $count : 1 ?>;
   createNew.addEventListener("click", () => {
     counter++;
     var div = document.createElement("div");

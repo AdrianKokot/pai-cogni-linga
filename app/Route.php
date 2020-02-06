@@ -49,6 +49,18 @@ class Route extends Controller {
       'roles' => ['user', 'admin'],
       'redirect' => '/'
     ],
+    '/edytuj' => [
+      'controller' => 'FlashSetsController',
+      'function' => 'edit',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/usun' => [
+      'controller' => 'FlashSetsController',
+      'function' => 'delete',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
     '/wszystkie-fiszki' => [
       'controller' => 'HomeController',
       'function' => 'allsets',
@@ -108,6 +120,12 @@ class Route extends Controller {
     '/dodaj' => [
       'controller' => 'FlashSetsController',
       'function' => 'postCreate',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/'
+    ],
+    '/edytuj' => [
+      'controller' => 'FlashSetsController',
+      'function' => 'postEdit',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
     ],
