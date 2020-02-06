@@ -7,6 +7,7 @@ define("DATABASE", "cognilinga");
 class DB {
   private static $db = null;
   public static $vPublicID = null;
+  public static $sActive = null;
 
   public static function configure() {
     self::$db = new PDO('mysql:host='.HOST.';dbname='.DATABASE.'', USER, PASSWORD, [
@@ -16,6 +17,7 @@ class DB {
     ]);
 
     self::$vPublicID = DB::selectOne("SELECT id FROM visibilities WHERE name = 'publiczny'")['data']['id'];
+    self::$sActive = DB::selectOne("SELECT id FROM statuses WHERE name = 'active'")["data"]['id'];
   }
 
   public static function fillData() {
@@ -56,5 +58,10 @@ class DB {
     if($query->execute($data))
       return self::$db->lastInsertId();
     return null;
+  }
+
+  public static function update($sql, Array $data = []) {
+    $query = self::$db->prepare($sql);
+    return $query->execute($data);
   }
 }

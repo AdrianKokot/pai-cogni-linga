@@ -10,7 +10,7 @@ $uri = str_replace("/index.php", "", $uri);
 $uri = $uri != "" ? $uri : "/";
 
 require_once 'app/Session.php';
-require_once 'database/Connection.php';
+require_once 'database/DB.php';
 DB::configure();
 DB::fillData();
 

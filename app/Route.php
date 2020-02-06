@@ -110,6 +110,12 @@ class Route extends Controller {
       'function' => 'postCreate',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
+    ],
+    '/ustawienia' => [
+      'controller' => 'UserController',
+      'function' => 'settings',
+      'roles' => ['user', 'admin'],
+      'redirect' => '/ustawienia'
     ]
   ];
 
