@@ -27,7 +27,7 @@
           ?>
         </section>
         <h2 class="load-more">
-          <a href="/wszystkie-fiszki">Wyświetl więcej</a>
+          <a href="<?= ROOT_URL ?>/wszystkie-fiszki">Wyświetl więcej</a>
           <span class="icon"><i class="fas fa-angle-down"></i></span>
         </h2>
       </section>
@@ -93,7 +93,7 @@
         <?php
           foreach($web["categories"] as $cat) {
         ?>
-          <a href="/kategoria/<?= $cat["name"] ?>" class="category-prev">
+          <a href="<?= ROOT_URL ?>/kategoria/<?= $cat["name"] ?>" class="category-prev">
             <h3><?= $cat["name"] ?></h3>
           </a>
         <?php  }

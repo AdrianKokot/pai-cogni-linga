@@ -5,16 +5,16 @@
   <section id="app-panel">
     <article>
       <section>
-        <a href="/nauka/<?= $web["studySet"]["id"]?>/ulubione">
+        <a href="<?= ROOT_URL ?>/nauka/<?= $web["studySet"]["id"]?>/ulubione">
           <strong class="button-accent <?= $web["studySet"]["favourite"] == 1 ? "fav" : ""?>"><i class="fas fa-star"></i> Dodaj do ulubionych</strong>
         </a>
         <?php
           if($web['studySet']["owner"]) {
         ?>
-        <a href="/edytuj/<?= $web["studySet"]["id"]?>">
+        <a href="<?= ROOT_URL ?>/edytuj/<?= $web["studySet"]["id"]?>">
           <strong class="button-accent"><i class="fas fa-pen"></i> Edytuj</strong>
         </a>
-        <a href="/usun/<?= $web["studySet"]["id"]?>">
+        <a href="<?= ROOT_URL ?>/usun/<?= $web["studySet"]["id"]?>">
           <strong class="button-accent"><i class="fas fa-trash"></i> Usuń</strong>
         </a>
         <?php } ?>
