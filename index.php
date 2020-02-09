@@ -1,11 +1,10 @@
 <?php 
 session_start();
 
-$uri = substr($_SERVER["PHP_SELF"], strpos($_SERVER["PHP_SELF"], "/index.php")); //tekst z /index.php
-
 define('ROOT_DIR',__DIR__);
-define('ROOT_URL', substr($_SERVER["PHP_SELF"], 0, -strlen($uri)));
+define('ROOT_URL', substr($_SERVER["PHP_SELF"], 0, strpos($_SERVER["PHP_SELF"], "/index.php")));
 
+$uri = str_replace(ROOT_URL, "",$_SERVER["REQUEST_URI"]);
 $uri = str_replace("/index.php", "", $uri);
 $uri = $uri != "" ? $uri : "/";
 
