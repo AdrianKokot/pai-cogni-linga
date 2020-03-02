@@ -117,8 +117,9 @@ class FlashSetsController extends Controller {
   }
 
   public function postEdit() {
-    //TODO edit 
+    //TODO ADMIN MOŻE EDYTOWAĆ WSZYSTKIE
     $id = $_SESSION['routeOther'][0];
+    echo "$id";
     Session::setFormData([
         'study-set-name' => $_POST['study-set-name'] ?? null, 
         'study-set-description' => $_POST['study-set-description'] ?? null, 
@@ -148,7 +149,7 @@ class FlashSetsController extends Controller {
       }
             
       $count = count($_POST['new-flashcard-definition']);
-      $id = DB::update("UPDATE study_sets SET `title` = :title, `flashcard_count` = :flashcardCount, `description` = :desc, `term_lang` = :termLang, `definition_lang` = :defLang, `category` = :cat, `visibility` = :vis, `points` = :points WHERE id = :id", [
+      DB::update("UPDATE study_sets SET `title` = :title, `flashcard_count` = :flashcardCount, `description` = :desc, `term_lang` = :termLang, `definition_lang` = :defLang, `category` = :cat, `visibility` = :vis, `points` = :points WHERE id = :id", [
           'id' => $id,
           'title' => $_POST['study-set-name'], 
           'flashcardCount' => $count, 
@@ -160,9 +161,12 @@ class FlashSetsController extends Controller {
           'points' => $count * 3,
       ]);
 
+      $flashcardIds = DB::select("SELECT * from study_set_flashcards WHERE study_set = :id", ["id" => $id])["data"];
       DB::update("DELETE from study_set_flashcards WHERE study_set = :id", ["id" => $id]);
-      // DB::update("DELETE from flashcards WHERE id IN(SELECT flashcard FROM study_set_flashcards WHERE study_set = :id)", ['id' => $id]);
-
+      foreach($flashcardIds as $row) {
+        DB::update("DELETE from flashcards WHERE id = :id", ["id" => $row["flashcard"]]);
+      }
+      
       foreach($_POST["new-flashcard-term"] as $key => $newFlashcard) {
         $fId = DB::insert("INSERT INTO flashcards (`term`, `definition`) VALUES (:term, :definition)", ['term' => $newFlashcard, 'definition' => $_POST["new-flashcard-definition"][$key]]);
         DB::insert("INSERT INTO study_set_flashcards VALUES (:flashcardId, :setId)", ['flashcardId' => $fId, 'setId' => $id]);
