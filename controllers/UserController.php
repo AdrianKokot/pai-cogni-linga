@@ -66,4 +66,7 @@ class UserController extends Controller {
       return $this->abort();
     }
   }
+
+  //TODO admin może aktywować i deaktywować użytkowników
+  //TODO nauczyciel może dodawać kategorie
 }

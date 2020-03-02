@@ -117,6 +117,64 @@ class FlashSetsController extends Controller {
   }
 
   public function postEdit() {
-    //TODO edit post
+    //TODO edit 
+    $id = $_SESSION['routeOther'][0];
+    Session::setFormData([
+        'study-set-name' => $_POST['study-set-name'] ?? null, 
+        'study-set-description' => $_POST['study-set-description'] ?? null, 
+        'study-set-term-lang' => $_POST['study-set-term-lang'] ?? null, 
+        'study-set-definition-lang' => $_POST['study-set-definition-lang'] ?? null, 
+        'study-set-category' => $_POST['study-set-category'] ?? null, 
+        'study-set-visibility' => $_POST['study-set-visibility'] ?? null, 
+        'new-flashcard-term' => $_POST['new-flashcard-term'],
+        'new-flashcard-definition' => $_POST['new-flashcard-definition']
+      ]);
+
+      if(
+        !isset($_POST['study-set-name']) || empty($_POST['study-set-name']) ||
+        !isset($_POST['study-set-description']) || empty($_POST['study-set-description']) ||
+        !isset($_POST['study-set-term-lang']) || empty($_POST['study-set-term-lang']) ||
+        !isset($_POST['study-set-definition-lang']) || empty($_POST['study-set-definition-lang']) ||
+        !isset($_POST['study-set-category']) || empty($_POST['study-set-category']) ||
+        !isset($_POST['study-set-visibility']) || empty($_POST['study-set-visibility'])
+      ){
+        Session::setFlash('Wypełnij wszystkie wymagane pola.');
+        return $this->redirectTo('/edytuj/'.$id);
+      }
+
+      if(count($_POST['new-flashcard-definition']) <=1) {
+        Session::setFlash('Zestaw musi mieć przynajmniej dwie pary fiszek.');
+        return $this->redirectTo('/edytuj/'.$id);
+      }
+            
+      $count = count($_POST['new-flashcard-definition']);
+      $id = DB::update("UPDATE study_sets SET `title` = :title, `flashcard_count` = :flashcardCount, `description` = :desc, `term_lang` = :termLang, `definition_lang` = :defLang, `category` = :cat, `visibility` = :vis, `points` = :points WHERE id = :id", [
+          'id' => $id,
+          'title' => $_POST['study-set-name'], 
+          'flashcardCount' => $count, 
+          'desc' => $_POST['study-set-description'], 
+          'termLang' => $_POST['study-set-term-lang'], 
+          'defLang' => $_POST['study-set-definition-lang'], 
+          'cat' => $_POST['study-set-category'], 
+          'vis' => $_POST['study-set-visibility'], 
+          'points' => $count * 3,
+      ]);
+
+      DB::update("DELETE from study_set_flashcards WHERE study_set = :id", ["id" => $id]);
+      // DB::update("DELETE from flashcards WHERE id IN(SELECT flashcard FROM study_set_flashcards WHERE study_set = :id)", ['id' => $id]);
+
+      foreach($_POST["new-flashcard-term"] as $key => $newFlashcard) {
+        $fId = DB::insert("INSERT INTO flashcards (`term`, `definition`) VALUES (:term, :definition)", ['term' => $newFlashcard, 'definition' => $_POST["new-flashcard-definition"][$key]]);
+        DB::insert("INSERT INTO study_set_flashcards VALUES (:flashcardId, :setId)", ['flashcardId' => $fId, 'setId' => $id]);
+      }
+
+
+      if($id) {
+          unset($_SESSION['formData']);
+          return $this->redirectTo("/nauka/$id");
+      } else {
+        Session::setFlash('Coś poszło nie tak.');
+        return $this->redirectTo('/dodaj');
+      }
   }
 }

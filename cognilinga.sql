@@ -397,7 +397,7 @@ ALTER TABLE `study_sets`
 -- Constraints for table `study_set_flashcards`
 --
 ALTER TABLE `study_set_flashcards`
-  ADD CONSTRAINT `study_set_flashcard_fk0` FOREIGN KEY (`flashcard`) REFERENCES `flashcards` (`id`),
+  ADD CONSTRAINT `study_set_flashcard_fk0` FOREIGN KEY (`flashcard`) REFERENCES `flashcards` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `study_set_flashcard_fk1` FOREIGN KEY (`study_set`) REFERENCES `study_sets` (`id`);
 
 --

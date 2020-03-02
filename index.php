@@ -18,14 +18,13 @@ if(!isset($_SESSION['role'])) $_SESSION['role'] = 'guest';
 require_once 'app/Route.php';
 $router = new Route();
 
+$requestedRoute = explode('/', $uri);
+$_SESSION['routeOther'] = array_slice($requestedRoute, 2) ?? null;
+
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
-
-  $requestedRoute = explode('/', $uri);
-  $_SESSION['routeOther'] = array_slice($requestedRoute, 2) ?? null;
-
   $router->render('/'.$requestedRoute[1]);
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $router->render($uri, 'post');
+  $router->render('/'.$requestedRoute[1], 'post');
 }

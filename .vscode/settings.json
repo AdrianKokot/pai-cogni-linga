@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "database": "cognilinga",
+            "dialect": "MySQL",
+            "name": "xampp-cognilinga",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}
