@@ -6,6 +6,7 @@
   <div id="account-panel">
     <i class="fas fa-angle-down"></i>
     <div id="account-panel-menu">
+      <a style="font-weight: bold">Witaj <?= $_SESSION['username'] ?>!</a>
       <a href="<?= ROOT_URL ?>/ustawienia">Ustawienia</a>
       <a href="<?= ROOT_URL ?>/wyloguj">Wyloguj się</a>
     </div>

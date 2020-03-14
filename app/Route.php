@@ -1,7 +1,7 @@
 <?php
 
 require_once (ROOT_DIR.'/app/Controller.php');
-require 'Guard.php';
+require_once (ROOT_DIR.'/app/Guard.php');
 
 class Route extends Controller {
 

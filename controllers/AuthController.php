@@ -20,6 +20,7 @@ class AuthController extends Controller {
     $_SESSION['role'] = Guard::getRole($authData['role']);
     $_SESSION['status'] = Guard::getStatus($authData['status']);
     $_SESSION['userId'] = $authData['id'];
+    $_SESSION['username'] = Guard::getUsername();
 
     $this->redirectTo('/');
   }
@@ -45,6 +46,7 @@ class AuthController extends Controller {
     $_SESSION['role'] = Guard::getRole($authData['role']);
     $_SESSION['status'] = Guard::getStatus($authData['role']);
     $_SESSION['userId'] = $authData['id'];
+    $_SESSION['username'] = Guard::getUsername();
 
     $this->redirectTo('/');
   }

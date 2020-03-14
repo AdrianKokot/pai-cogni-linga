@@ -1,5 +1,5 @@
 <?php
-
+require_once (ROOT_DIR.'/app/Guard.php');
 class LearnController extends Controller {
   public function learn() {
     try {
@@ -15,7 +15,7 @@ class LearnController extends Controller {
       $flashcardSet["data"]["created_by"] = DB::selectOne("SELECT login FROM users WHERE id = :id", ["id" => $flashcardSet["data"]["created_by"]])["data"]["login"];
   
       $flashcardSet["data"]["favourite"] = DB::select("SELECT * FROM favourite_sets WHERE user = :userId and study_set = :studySet", ["userId" => $_SESSION['userId'], 'studySet' => $id])["rows"];
-      $flashcardSet["data"]["owner"] = DB::selectOne("SELECT * FROM users as u join study_sets as ss on u.id = ss.created_by WHERE ss.id = :id and u.id = :userId", ['id' => $id, 'userId' => $_SESSION['userId']])["rows"] == 1;
+      $flashcardSet["data"]["owner"] = DB::selectOne("SELECT * FROM users as u join study_sets as ss on u.id = ss.created_by WHERE ss.id = :id and u.id = :userId", ['id' => $id, 'userId' => $_SESSION['userId']])["rows"] == 1 || Guard::isAdmin();
   
       $flashcards = DB::select("SELECT id, term, definition FROM study_set_flashcards as ssf join flashcards as f on ssf.flashcard = f.id WHERE ssf.study_set = :id", ["id" => $id]);
   

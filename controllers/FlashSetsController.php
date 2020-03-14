@@ -17,7 +17,11 @@ class FlashSetsController extends Controller {
   public function edit() {
     $id = $_SESSION['routeOther'][0];
     if($id != null) {
-      $set = DB::selectOne("SELECT * FROM study_sets WHERE id = :id AND created_by = :userId", ["id" => $id, "userId" => $_SESSION["userId"]]);
+      if(!Guard::isAdmin())
+        $set = DB::selectOne("SELECT * FROM study_sets WHERE id = :id AND created_by = :userId", ["id" => $id, "userId" => $_SESSION["userId"]]);
+      else 
+        $set = DB::selectOne("SELECT * FROM study_sets WHERE id = :id", ["id" => $id]);
+      
       if($set["rows"] == 1) {
         $set = $set["data"];
         Session::setFormData([
@@ -44,7 +48,7 @@ class FlashSetsController extends Controller {
   public function delete() {
     $id = $_SESSION['routeOther'][0];
     if($id != null) {
-      if(DB::selectOne("SELECT * FROM study_sets WHERE id = :id AND created_by = :userId", ["id" => $id, "userId" => $_SESSION["userId"]])["rows"] == 1) {
+      if(DB::selectOne("SELECT * FROM study_sets WHERE id = :id AND created_by = :userId", ["id" => $id, "userId" => $_SESSION["userId"]])["rows"] == 1 || Guard::isAdmin()) {
         DB::update("DELETE FROM favourite_sets WHERE study_set = :id", ["id" => $id]);
         DB::update("DELETE FROM learning_history WHERE study_set = :id", ["id" => $id]);
         foreach(DB::select("SELECT * FROM study_set_flashcards WHERE study_set = :id", ["id" => $id])["data"] as $flash) {
@@ -119,7 +123,14 @@ class FlashSetsController extends Controller {
   public function postEdit() {
     //TODO ADMIN MOŻE EDYTOWAĆ WSZYSTKIE
     $id = $_SESSION['routeOther'][0];
-    echo "$id";
+    $set = null;
+    if(!Guard::isAdmin())
+        $set = DB::selectOne("SELECT * FROM study_sets WHERE id = :id AND created_by = :userId", ["id" => $id, "userId" => $_SESSION["userId"]]);
+      else 
+        $set = DB::selectOne("SELECT * FROM study_sets WHERE id = :id", ["id" => $id]);
+    if(is_null($set)){
+      return $this->redirectTo('/');
+    }
     Session::setFormData([
         'study-set-name' => $_POST['study-set-name'] ?? null, 
         'study-set-description' => $_POST['study-set-description'] ?? null, 

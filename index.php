@@ -16,6 +16,7 @@ DB::fillData();
 if(!isset($_SESSION['role'])) $_SESSION['role'] = 'guest';
 
 require_once 'app/Route.php';
+require_once 'app/Guard.php';
 $router = new Route();
 
 $requestedRoute = explode('/', $uri);
