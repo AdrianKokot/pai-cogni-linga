@@ -121,7 +121,6 @@ class FlashSetsController extends Controller {
   }
 
   public function postEdit() {
-    //TODO ADMIN MOŻE EDYTOWAĆ WSZYSTKIE
     $id = $_SESSION['routeOther'][0];
     $set = null;
     if(!Guard::isAdmin())

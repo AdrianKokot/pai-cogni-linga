@@ -134,6 +134,12 @@ class Route extends Controller {
       'function' => 'settings',
       'roles' => ['user', 'admin'],
       'redirect' => '/ustawienia'
+    ],
+    '/postep' => [
+      'controller' => 'LearnController',
+      'function' => 'progress',
+      'roles' => ['user', 'admin', 'guest'],
+      'redirect' => '/'
     ]
   ];
 

@@ -12,8 +12,7 @@
           ?>
           <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
-              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/<?= $set["category"] ?>.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3><?= $set["title"] ?></h3>
@@ -42,8 +41,7 @@
           ?>
           <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
-              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/<?= $set["category"] ?>.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3><?= $set["title"] ?></h3>
@@ -69,8 +67,7 @@
           ?>
           <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
-              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/<?= $set["category"] ?>.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3><?= $set["title"] ?></h3>
@@ -100,46 +97,71 @@
         ?>
         </section>
       </section>
+      <?php
+      if(count($web["week_rank"]) >0){
+        ?>
+      
       <section>
         <h2>Ranking ostatniego tygodnia</h2>
-        <section id="ranking">
+        <section class="ranking">
+          <?php
+            foreach($web["week_rank"] as $key => $rank) {
+              $msg = $rank["score_week"];
+              switch($rank["score_week"]){
+                case 1: $msg .= " punkt"; break;
+                case 2:
+                case 3:
+                case 4: $msg .= " punkty"; break;
+                default: $msg .= " punktów"; break;
+              }
+              ?>
           <div class="user-prev">
-            <span class="left">#1</span>
+            <span class="left">#<?= $key +1 ?></span>
             <span class="right">
-              <strong>Nick użytkownika</strong>
-              <span>200 punków</span>
+              <strong><?= $rank['login'] ?></strong>
+              <span><?= $msg ?></span>
             </span>
           </div>
-          <div class="user-prev">
-            <span class="left">#2</span>
-            <span class="right">
-              <strong>Nick użytkownika</strong>
-              <span>200 punków</span>
-            </span>
-          </div>
-          <div class="user-prev">
-            <span class="left">#3</span>
-            <span class="right">
-              <strong>Nick użytkownika</strong>
-              <span>200 punków</span>
-            </span>
-          </div>
-          <div class="user-prev">
-            <span class="left">#4</span>
-            <span class="right">
-              <strong>Nick użytkownika</strong>
-              <span>200 punków</span>
-            </span>
-          </div>
-          <div class="user-prev">
-            <span class="left">#5</span>
-            <span class="right">
-              <strong>Nick użytkownika</strong>
-              <span>200 punków</span>
-            </span>
-          </div>
+              <?php
+            }
+          ?>
         </section>
       </section>
+      <?php 
+        } 
+
+      if(count($web["global_rank"]) >0){
+        ?>
+      
+      <section>
+        <h2>Ranking globalny</h2>
+        <section class="ranking">
+          <?php
+            foreach($web["global_rank"] as $key => $rank) {
+              $msg = $rank["score"];
+              switch($rank["score"]){
+                case 1: $msg .= " punkt"; break;
+                case 2:
+                case 3:
+                case 4: $msg .= " punkty"; break;
+                default: $msg .= " punktów"; break;
+              }
+              ?>
+          <div class="user-prev">
+            <span class="left">#<?= $key +1 ?></span>
+            <span class="right">
+              <strong><?= $rank['login'] ?></strong>
+              <span><?= $msg ?></span>
+            </span>
+          </div>
+              <?php
+            }
+          ?>
+        </section>
+      </section>
+      <?php 
+        } 
+      ?>
     </article>
   </section>
 </section>

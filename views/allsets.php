@@ -12,8 +12,7 @@
           ?>
           <a class="flash-prev" href="<?= ROOT_URL ?>/nauka/<?= $set["id"] ?>">
             <div class="flash-img">
-              <!-- <img src="?= ROOT_URL ?>/img/flashcard-?= $set["id"] ?>.jpg" alt="" /> -->
-              <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
+              <img src="<?= ROOT_URL ?>/img/<?= $set["category"] ?>.jpg" alt="" />
             </div>
             <div class="flash-description">
               <h3><?= $set["title"] ?></h3>

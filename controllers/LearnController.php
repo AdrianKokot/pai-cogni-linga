@@ -7,7 +7,7 @@ class LearnController extends Controller {
 
       $publicId = DB::$vPublicID;
     
-      $flashcardSet = DB::selectOne("SELECT ss.id, title, flashcard_count, created_by, c.name as 'categoryName', visibility, description, term_lang, definition_lang FROM study_sets as ss join categories as c on c.id = ss.category WHERE ss.id = :id", ['id' => $id]);
+      $flashcardSet = DB::selectOne("SELECT ss.id, title, flashcard_count, created_by, category, c.name as 'categoryName', visibility, description, term_lang, definition_lang FROM study_sets as ss join categories as c on c.id = ss.category WHERE ss.id = :id", ['id' => $id]);
       if($flashcardSet['rows'] == 0 || ($flashcardSet['data']['visibility'] != $publicId && $flashcardSet['data']['created_by'] != $_SESSION["userId"])) throw new Exception();
 
       $flashcardSet["data"]["term_lang"] = DB::selectOne("SELECT lang FROM languages WHERE id = :id", ["id" => $flashcardSet["data"]["term_lang"]])["data"]["lang"];
@@ -37,7 +37,6 @@ class LearnController extends Controller {
           case 'pisanie': return $this->writingMode($id, $routeData); break;
           case 'fiszki': return $this->flashcardMode($id, $routeData); break;
           case 'ulubione': return $this->favourite($id); break;
-          case 'postep': return $this->progress($id); break;
           default: return $this->abort();
         }
       }
@@ -47,8 +46,30 @@ class LearnController extends Controller {
     die();
   }
 
-  public function progress($id) {
+  public function progress() {
+    $json = json_decode(trim(file_get_contents("php://input")), true);
+    if(is_null($json)) return $this->abort();
     
+    $setID = $json["id"] ?? null;
+    $userID = $_SESSION["userId"] ?? null;
+    $correctAnswers = $json["correct"] ?? null;
+
+    if(is_null($setID) || is_null($userID) || is_null($correctAnswers)) return $this->abort();
+
+    $data = DB::selectOne("SELECT * FROM learning_history WHERE user = :userId and study_set = :id", ['userId' => $userID, 'id' => $setID])["data"];
+    if(is_null($data)) return $this->abort();
+
+    $dbSet = DB::selectOne("SELECT flashcard_count, points FROM study_sets WHERE id = :id", ['id' => $setID])["data"];
+    $points = $dbSet["points"]/$dbSet["flashcard_count"]*$correctAnswers;
+    $earned = $points - intval($data['earned_points']);
+    $earned = $earned < 0 ? 0 : $earned;
+    if($points > $data['earned_points']) {
+      DB::update("UPDATE learning_history SET progress = :correct, earned_points = :points WHERE user = :userId and study_set = :id", ['correct' => $correctAnswers, 'points' => $points, 'userId' => $userID, 'id' => $setID]);
+      DB::update("UPDATE users SET score = (SELECT SUM(earned_points) FROM learning_history WHERE user = :id) WHERE id = :usrid", ['id' => $userID, 'usrid' => $userID]);
+      DB::update("UPDATE users SET score_week = (SELECT SUM(earned_points) FROM learning_history WHERE user = :id and timestampdiff(DAY, finished_date,CURRENT_TIMESTAMP()) <= 7) WHERE id = :usrid", ['id' => $userID, 'usrid' => $userID]);
+    }
+    die(json_encode(["earned" => $earned]));
+    return $this->abort();
   }
 
   public function writingMode($id, $data = null) {
@@ -65,8 +86,7 @@ class LearnController extends Controller {
     if(DB::select("SELECT * FROM learning_history WHERE user = :userId and study_set = :id", ['userId' => $_SESSION["userId"], 'id' => $id])["rows"] == 0){
       DB::insert('INSERT INTO learning_history VALUES (:userId, :id, 0, 0, null)', ['userId' => $_SESSION["userId"], 'id' => $id]);
     } else {
-      //TODO PROGRESS
-      // DB::insert("UPDATE learning_history SET progress ")
+      DB::update("UPDATE learning_history SET finished_date = CURRENT_TIMESTAMP() WHERE user = :userId and study_set = :id",['userId' => $_SESSION["userId"], 'id' => $id]);
     }
   }
 

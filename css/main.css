@@ -489,7 +489,7 @@ h2.load-more a:hover {
 }
 
 #categories,
-#ranking {
+.ranking {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -509,14 +509,14 @@ h2.load-more a:hover {
   text-transform: uppercase;
 }
 
-#ranking .user-prev {
+.ranking .user-prev {
   padding: 10px 20px 10px 10px;
   display: flex;
   flex-basis: calc(20% - 20px);
   flex-grow: 1;
 }
 
-#ranking .user-prev .left {
+.ranking .user-prev .left {
   padding: 0 10px;
   display: flex;
   justify-content: center;
@@ -524,14 +524,14 @@ h2.load-more a:hover {
   font-size: 2rem;
 }
 
-#ranking .user-prev .right {
+.ranking .user-prev .right {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 #categories,
-#ranking {
+.ranking {
   padding-bottom: 30px;
 }
 
@@ -1012,7 +1012,7 @@ h2.learning {
 }
 
 @media screen and (max-width: 600px){
-  #ranking .user-prev {
+  .ranking .user-prev {
     flex-basis: 100%;
   }
   #learn-panel .flashcards-panel {

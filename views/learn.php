@@ -22,7 +22,7 @@
       <section>
         <section class="columns2 margin-20">
           <div class="flash-img">
-            <img src="<?= ROOT_URL ?>/img/flashcard.jpg" alt="" />
+            <img src="<?= ROOT_URL ?>/img/<?= $web["studySet"]["category"] ?>.jpg" alt="" />
           </div>
           <div class="right-side">
             <h2 class="lowercase"><?= $web["studySet"]["title"] ?></h2>

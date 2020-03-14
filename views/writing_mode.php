@@ -1,12 +1,13 @@
 <?php
 require_once ROOT_DIR.'/layout/app-nav.php';
+$studySetID = $web['studySet']['id'];
 ?>
 <section>
   <section id="app-panel">
     <article>
       <section>
         <p>
-          <a href="<?= ROOT_URL ?>/nauka/<?= $web['studySet']['id']?>"><i class="fas fa-angle-left"></i> <strong>Powrót</strong></a>
+          <a href="<?= ROOT_URL ?>/nauka/<?= $studySetID?>"><i class="fas fa-angle-left"></i> <strong>Powrót</strong></a>
         </p>
         <h2 class="lowercase learning"><?= $web['studySet']['title'] ?>
           <span class="learning-settings">
@@ -90,6 +91,31 @@ require_once ROOT_DIR.'/layout/app-nav.php';
         badAnswers.forEach(answerPos => {
           learnPanel.innerHTML += `<p class="t-center mt-15">${flashcardsArr[flashcardsArr.length - answerPos].definition} <strong>-</strong> ${flashcardsArr[flashcardsArr.length - answerPos].term}</p>`;
         });
+        fetch(`<?= ROOT_URL ?>/postep`, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({"correct": correct, "id": <?= $studySetID ?>})
+        }).then(res => {
+          if(res.ok) return res.json();
+        }).then(json => {
+          
+          if(json.earned != 0) {
+            var msg = json.earned;
+            switch(json.earned) {
+              case 1: msg += " punkt"; break;
+              case 2:
+              case 3:
+              case 4: msg += " punkty"; break;
+              default: msg += " punktów"; break;
+            }
+            learnPanel.innerHTML += `<p class="t-center mt-15">Zyskano dodatkowe ${msg}!</p>`;
+          }
+        }).catch(e => {
+          console.log(e);
+        })
       }
     }
 
