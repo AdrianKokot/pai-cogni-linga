@@ -9,9 +9,9 @@ class Controller {
   public function view($file, Array $options = []) {
     $pageTitle = $options['pageTitle'] ?? 'Nie znaleziono';
     $web = $options['web'] ?? null;
-    require_once ROOT_DIR.'/layout/head.php';
-    require_once ROOT_DIR.'/views/'.$file;
-    require_once ROOT_DIR.'/layout/footer.php';
+    require_once (ROOT_DIR.'/layout/head.php');
+    require_once (ROOT_DIR.'/views/'.$file);
+    require_once (ROOT_DIR.'/layout/footer.php');
     die();
   }
 

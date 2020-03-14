@@ -138,20 +138,20 @@ class Route extends Controller {
   ];
 
   public function render($requestedRoute, $method = 'get') {
-    $methodArray = $method == 'get' ? "routes" : "postRoutes";
+    $method = $method == 'get' ? "routes" : "postRoutes";
 
-    if(!isset($this->{$methodArray}[$requestedRoute])) {
+    if(!isset($this->{$method}[$requestedRoute])) {
 
       $requestedRoute = 'notfound';
       header("HTTP/1.1 404 Not Found");
 
     } else {
 
-      if(!Guard::checkAccess($_SESSION["role"], $this->{$methodArray}[$requestedRoute]['roles'])) {
-        $this->redirectTo($this->{$methodArray}[$requestedRoute]['redirect']);
+      if(!Guard::checkAccess($_SESSION["role"], $this->{$method}[$requestedRoute]['roles'])) {
+        $this->redirectTo($this->{$method}[$requestedRoute]['redirect']);
       }
 
-      $controllerToRequire = $this->{$methodArray}[$requestedRoute]['controller'] ?? null;
+      $controllerToRequire = $this->{$method}[$requestedRoute]['controller'] ?? null;
 
       if($controllerToRequire != null) {
         
@@ -160,11 +160,11 @@ class Route extends Controller {
         class_alias($controllerToRequire, 'PageController');
         $pageController = new PageController();
 
-        $functionToCall = $this->{$methodArray}[$requestedRoute]['function'] ?? null;
+        $functionToCall = $this->{$method}[$requestedRoute]['function'] ?? null;
         if($functionToCall != null) $pageController->$functionToCall();
 
       } else {
-        $functionToCall = $this->{$methodArray}[$requestedRoute]['function'] ?? null;
+        $functionToCall = $this->{$method}[$requestedRoute]['function'] ?? null;
         if($functionToCall != null) $this->$functionToCall();
       }
 

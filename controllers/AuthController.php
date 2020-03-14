@@ -18,7 +18,7 @@ class AuthController extends Controller {
     } 
 
     $_SESSION['role'] = Guard::getRole($authData['role']);
-    $_SESSION['status'] = Guard::getStatus($authData['role']);
+    $_SESSION['status'] = Guard::getStatus($authData['status']);
     $_SESSION['userId'] = $authData['id'];
 
     $this->redirectTo('/');
