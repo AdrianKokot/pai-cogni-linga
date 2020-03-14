@@ -10,6 +10,6 @@ class Guard {
   }
 
   public static function checkAccess($role, $rolesArr) {
-    return in_array($role,$rolesArr) && ($_SESSION['status'] ?? 'active') == 'active';
+    return (in_array($role,$rolesArr) || $role == 'admin') && ($_SESSION['status'] ?? 'active') == 'active';
   }
 }

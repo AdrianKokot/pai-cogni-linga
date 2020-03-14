@@ -29,7 +29,7 @@ class Route extends Controller {
     'notfound' => [
       'file' => 'notfound.html',
       'title' => 'Nie znaleziono',
-      'roles' => ['guest']
+      'roles' => ['guest', 'user', 'admin']
     ],
     '/cogni' => [
       'roles' => ['user', 'admin'],
@@ -138,18 +138,20 @@ class Route extends Controller {
   ];
 
   public function render($requestedRoute, $method = 'get') {
-    if($method == 'get' ? !isset($this->routes[$requestedRoute]) : !isset($this->postRoutes[$requestedRoute])) {
+    $methodArray = $method == 'get' ? "routes" : "postRoutes";
+
+    if(!isset($this->{$methodArray}[$requestedRoute])) {
 
       $requestedRoute = 'notfound';
       header("HTTP/1.1 404 Not Found");
 
     } else {
 
-      if($method == 'get' ? !Guard::checkAccess($_SESSION['role'],$this->routes[$requestedRoute]['roles']) : !Guard::checkAccess($_SESSION['role'],$this->postRoutes[$requestedRoute]['roles'])) {
-        $method == 'get' ? $this->redirectTo($this->routes[$requestedRoute]['redirect']) : $this->redirectTo($this->postRoutes[$requestedRoute]['redirect']);
+      if(!Guard::checkAccess($_SESSION["role"], $this->{$methodArray}[$requestedRoute]['roles'])) {
+        $this->redirectTo($this->{$methodArray}[$requestedRoute]['redirect']);
       }
 
-      $controllerToRequire = $method == 'get' ? ($this->routes[$requestedRoute]['controller'] ?? null) : ($this->postRoutes[$requestedRoute]['controller'] ?? null);
+      $controllerToRequire = $this->{$methodArray}[$requestedRoute]['controller'] ?? null;
 
       if($controllerToRequire != null) {
         
@@ -158,11 +160,11 @@ class Route extends Controller {
         class_alias($controllerToRequire, 'PageController');
         $pageController = new PageController();
 
-        $functionToCall = $method == 'get' ? ($this->routes[$requestedRoute]['function'] ?? null) : ($this->postRoutes[$requestedRoute]['function'] ?? null);
+        $functionToCall = $this->{$methodArray}[$requestedRoute]['function'] ?? null;
         if($functionToCall != null) $pageController->$functionToCall();
 
       } else {
-        $functionToCall = $method == 'get' ? ($this->routes[$requestedRoute]['function'] ?? null) : ($this->postRoutes[$requestedRoute]['function'] ?? null);
+        $functionToCall = $this->{$methodArray}[$requestedRoute]['function'] ?? null;
         if($functionToCall != null) $this->$functionToCall();
       }
 
