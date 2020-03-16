@@ -16,6 +16,8 @@ class DB {
       PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
     ]);
 
+    self::fillData();
+
     self::$vPublicID = DB::selectOne("SELECT id FROM visibilities WHERE name = 'publiczny'")['data']['id'];
     self::$sActive = DB::selectOne("SELECT id FROM statuses WHERE name = 'active'")["data"]['id'];
   }

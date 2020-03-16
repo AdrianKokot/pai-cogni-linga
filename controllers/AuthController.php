@@ -44,7 +44,7 @@ class AuthController extends Controller {
     $authData = Auth::register($_POST['username'], $_POST['password'], $_POST['register-code'] ?? null);
     
     $_SESSION['role'] = Guard::getRole($authData['role']);
-    $_SESSION['status'] = Guard::getStatus($authData['role']);
+    $_SESSION['status'] = Guard::getStatus($authData['status']);
     $_SESSION['userId'] = $authData['id'];
     $_SESSION['username'] = Guard::getUsername();
 

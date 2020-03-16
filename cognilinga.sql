@@ -160,8 +160,8 @@ CREATE TABLE `users` (
   `password` text NOT NULL,
   `status` int(11) NOT NULL,
   `role` int(11) NOT NULL,
-  `score` bigint(20) DEFAULT NULL,
-  `score_week` bigint(20) DEFAULT NULL
+  `score` bigint(20) DEFAULT 0,
+  `score_week` bigint(20) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -174,51 +174,6 @@ CREATE TABLE `visibilities` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*DANE WyPEŁNIAJĄCE PANEL GŁÓWNY*/
-INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'informatyka');
-
-INSERT INTO `flashcards` (`id`, `term`, `definition`) VALUES
-(1, 'Term 1', 'Definicja 1'),
-(2, 'Term 2', 'Definicja 2'),
-(3, 'Term 3', 'Definicja 3'),
-(4, 'Term 4', 'Definicja 4'),
-(9, 'Term 1', 'Definicja 1'),
-(10, 'Term 2', 'Definicja 2'),
-(11, 'Term 3', 'Definicja 3');
-
-INSERT INTO `languages` (`id`, `lang`) VALUES
-(1, 'angielski'),
-(2, 'polski');
-
-INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'user'),
-(2, 'admin');
-
-INSERT INTO `statuses` (`id`, `name`) VALUES
-(1, 'active'),
-(2, 'deleted');
-
-INSERT INTO `study_sets` (`id`, `title`, `created_by`, `flashcard_count`, `description`, `term_lang`, `definition_lang`, `category`, `visibility`, `created_date`, `points`) VALUES
-(1, 'Zestaw 1', 1, 4, 'Zestaw 1', 1, 2, 1, 2, '2020-02-03 12:39:13', 12),
-(4, 'Zestaw 4', 1, 3, 'Zestaw 4', 1, 2, 1, 1, '2020-02-03 12:57:41', 9);
-
-INSERT INTO `study_set_flashcards` (`flashcard`, `study_set`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(9, 4),
-(10, 4),
-(11, 4);
-
-INSERT INTO `users` (`id`, `login`, `password`, `status`, `role`, `score`, `score_week`) VALUES
-(1, 'akokot', '$argon2id$v=19$m=65536,t=4,p=1$eVhLM2tiUjltMzRxUVp2TA$mkg/HaJ/lI/prIXG6u9FcHo9yWq9yDgwAptvoqKy8tA', 1, 1, NULL, NULL);
-
-INSERT INTO `visibilities` (`id`, `name`) VALUES
-(1, 'prywatny'),
-(2, 'publiczny');
 
 
 --

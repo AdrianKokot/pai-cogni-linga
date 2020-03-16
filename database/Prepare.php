@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Connection.php';
+// require_once 'Connection.php';
 
 function DBInsertData() {
   DB::insert("INSERT INTO statuses (`name`) VALUES ('active'), ('deleted')");

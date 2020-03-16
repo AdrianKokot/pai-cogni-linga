@@ -11,7 +11,6 @@ $uri = $uri != "" ? $uri : "/";
 require_once 'app/Session.php';
 require_once 'database/DB.php';
 DB::configure();
-DB::fillData();
 
 if(!isset($_SESSION['role'])) $_SESSION['role'] = 'guest';
 
