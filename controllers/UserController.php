@@ -66,7 +66,4 @@ class UserController extends Controller {
       return $this->abort();
     }
   }
-
-  //TODO nauczyciel może dodawać kategorie - przy dodawaniu kategorii może wybrać zdjęcie fiszek
-
 }

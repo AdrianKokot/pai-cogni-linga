@@ -29,10 +29,10 @@ class Route extends Controller {
     'notfound' => [
       'file' => 'notfound.html',
       'title' => 'Nie znaleziono',
-      'roles' => ['guest', 'user', 'admin']
+      'roles' => ['guest', 'user', 'admin', 'teacher']
     ],
     '/cogni' => [
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/logowanie',
       'controller' => 'HomeController',
       'function' => 'main'
@@ -40,71 +40,77 @@ class Route extends Controller {
     '/wyloguj' => [
       'controller' => 'AuthController',
       'function' => 'logout',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/dodaj' => [
       'controller' => 'FlashSetsController',
       'function' => 'index',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/edytuj' => [
       'controller' => 'FlashSetsController',
       'function' => 'edit',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/usun' => [
       'controller' => 'FlashSetsController',
       'function' => 'delete',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/wszystkie-fiszki' => [
       'controller' => 'HomeController',
       'function' => 'allsets',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/szukaj' => [
       'controller' => 'HomeController',
       'function' => 'search',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/moje-fiszki' => [
       'controller' => 'HomeController',
       'function' => 'usersets',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/ustawienia' => [
       'file' => 'settings.php',
       'title' => 'Moje konto',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/nauka' => [
       'controller' => 'LearnController',
       'function' => 'learn',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/test' => [
       'function' => 'test',
-      'roles' => ['guest', 'user', 'admin']
+      'roles' => ['guest', 'user', 'admin', 'teacher']
     ],
     '/kategoria' => [
       'function' => 'category',
       'controller' => 'HomeController',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin', 'teacher'],
       'redirect' => '/'
     ],
     '/uzytkownicy' => [
       'function' => 'users',
       'controller' => 'AdminController',
       'roles' => ['admin'],
+      'redirect' => '/'
+    ],
+    '/kategorie' => [
+      'function' => 'categories',
+      'controller' => 'AdminController',
+      'roles' => ['admin', 'teacher'],
       'redirect' => '/'
     ]
   ];
@@ -126,25 +132,31 @@ class Route extends Controller {
     '/dodaj' => [
       'controller' => 'FlashSetsController',
       'function' => 'postCreate',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin','teacher'],
       'redirect' => '/'
     ],
     '/edytuj' => [
       'controller' => 'FlashSetsController',
       'function' => 'postEdit',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin','teacher'],
       'redirect' => '/'
     ],
     '/ustawienia' => [
       'controller' => 'UserController',
       'function' => 'settings',
-      'roles' => ['user', 'admin'],
+      'roles' => ['user', 'admin','teacher'],
       'redirect' => '/ustawienia'
     ],
     '/postep' => [
       'controller' => 'LearnController',
       'function' => 'progress',
-      'roles' => ['user', 'admin', 'guest'],
+      'roles' => ['user', 'admin','teacher'],
+      'redirect' => '/'
+    ],
+    '/kategorie' => [
+      'controller' => 'AdminController',
+      'function' => 'postcategory',
+      'roles' => ['admin','teacher'],
       'redirect' => '/'
     ]
   ];

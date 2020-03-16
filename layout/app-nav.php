@@ -56,6 +56,16 @@
     </li>
         <?php
       }
+      if(Guard::isAdmin() || $_SESSION['role'] == 'teacher') {
+        ?>
+    <li title="Kategorie">
+      <a href="<?= ROOT_URL ?>/kategorie">
+        <div class="icon"><i class="fas fa-stream"></i></div>
+        <div class="name">Menedżer kategorii</div>
+      </a>
+    </li>
+        <?php
+      }
     ?>
   </ul>
 </nav>
