@@ -47,14 +47,6 @@ class DB {
 
   public static function insert($sql, Array $data = []) {
     $query = self::$db->prepare($sql);
-
-    // $dataFile = file_get_contents('queries.txt');
-    // $dataFile .= "\n\n$sql\n\n";
-    // foreach($data as $key => $item) {
-    //   $dataFile .= "$key = $item\n";
-    // }
-    // file_put_contents('queries.txt', $dataFile);
-    
     if($query->execute($data))
       return self::$db->lastInsertId();
     return null;

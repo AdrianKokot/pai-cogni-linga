@@ -44,5 +44,18 @@
         <div class="name">Wszystkie fiszki</div>
       </a>
     </li>
+    <?php
+      if(Guard::isAdmin()) {
+
+        ?>
+    <li title="Menedżer użytkowników">
+      <a href="<?= ROOT_URL ?>/uzytkownicy">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <div class="name">Menedżer użytkowników</div>
+      </a>
+    </li>
+        <?php
+      }
+    ?>
   </ul>
 </nav>

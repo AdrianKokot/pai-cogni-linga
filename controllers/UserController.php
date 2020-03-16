@@ -67,7 +67,6 @@ class UserController extends Controller {
     }
   }
 
-  //TODO admin może aktywować i deaktywować użytkowników
   //TODO nauczyciel może dodawać kategorie - przy dodawaniu kategorii może wybrać zdjęcie fiszek
 
 }

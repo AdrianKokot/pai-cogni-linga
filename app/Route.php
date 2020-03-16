@@ -100,6 +100,12 @@ class Route extends Controller {
       'controller' => 'HomeController',
       'roles' => ['user', 'admin'],
       'redirect' => '/'
+    ],
+    '/uzytkownicy' => [
+      'function' => 'users',
+      'controller' => 'AdminController',
+      'roles' => ['admin'],
+      'redirect' => '/'
     ]
   ];
 

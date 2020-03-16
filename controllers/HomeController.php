@@ -10,8 +10,8 @@ class HomeController extends Controller {
           'allSets' => DB::select("SELECT id, title, flashcard_count, category FROM study_sets WHERE (visibility = $publicId or created_by = $_SESSION[userId] ".$admin.") ORDER BY created_date DESC LIMIT 3")["data"],
           'favouriteSets' => DB::select("SELECT id, title, flashcard_count, category FROM favourite_sets as fs join study_sets as ss on ss.id = fs.study_set WHERE (visibility = $publicId or created_by = $_SESSION[userId]) and user = :id", ["id" => $_SESSION["userId"]])["data"],
           'historySets' => DB::select("SELECT id, title, flashcard_count, category FROM learning_history as fh join study_sets as ss on fh.study_set = ss.id WHERE (visibility = $publicId or created_by = $_SESSION[userId]) and user = :id order by finished_date DESC LIMIT 3", ["id" => $_SESSION["userId"]])["data"],
-          'week_rank' => DB::select("SELECT login,score_week FROM users ORDER BY score_week DESC LIMIT 5")["data"] ?? [],
-          'global_rank' => DB::select("SELECT login,score FROM users ORDER BY score DESC LIMIT 5")["data"] ?? []
+          'week_rank' => DB::select("SELECT login,score_week FROM users WHERE users.status = :status ORDER BY score_week DESC LIMIT 5", ["status" => DB::$sActive])["data"] ?? [],
+          'global_rank' => DB::select("SELECT login,score FROM users WHERE users.status = :status ORDER BY score DESC LIMIT 5", ["status" => DB::$sActive])["data"] ?? []
       ]]);
   }
 
