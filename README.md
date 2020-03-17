@@ -1,4 +1,4 @@
-# Projekt na pracownię aplikacji internetowych
+# Projekt "COGNI LINGA"
 
 ## Tematyka
 
@@ -8,18 +8,18 @@ Tematyką projektu jest aplikacja do nauki języków obcych w konkretnych katego
 
 Aplikacja zawiera takie funkcje jak:
 
-* Używanie aplikacji bez zakładania konta (ograniczona funkcjonalność)
-* Założenie konta użytkownika i nauczyciela - nauczyciel może dodawać fiszki. Konto nauczyciela wymaga specjalnego kodu nauczycielskiego możliwego do wykorzystania raz (wymyślonego na potrzeby tego projektu)
+* Zakładanie kont. Role użytkowników nadaje odpowiedni kod rejestracyjny:
+        * Brak kodu: zwykły użytkownik
+        * Kod: nauczyciel lub administrator
 * Możliwość wyłączenia konta (stanie się nieaktywne)
-* Konto administratora do zarządzania wszystkimi dostępnymi fiszkami
 * Nauka zestawów fiszek
 * Odsłuch wymowy (Google text-to-speech)
-* Tworzenie nowych zestawów fiszek (tylko nauczyciel)
 * Dodawanie zestawów do ulubionych
-* Kategoryzowanie zestawów fiszek
-* Nauka fiszek generuje punkty
-* Ranking wszystkich użytkowników rozdzielony na tygodniowy i ogólny, resetują się w każdy niedzielny wieczór
+* Wszystkie rodzaje kont mogą dodawać nowe zestawy fiszek, edytować i je usuwać
+* Konto nauczyciela może dodawać także kategorie fiszek
+* Konto administratora może ponadto usuwać kategorie fiszek oraz usuwać i edytować wszystkie zestawy fiszek
+* Nauka poprzez tryb pisanie generuje punkty, z których jest utworzony ranking tygodniowy i ogólny
 
 Technologie projektu:
 
-Aplikacja jest napisana za pomocą: PHP, HTML, CSS, JS. Back-end aplikacji jest oparty o strukturę MVC. Baza danych używa MySql.
+Aplikacja jest napisana za pomocą: PHP, HTML, CSS, JS. Back-end aplikacji jest oparty o strukturę View-Controller. Baza danych używa MySql.
