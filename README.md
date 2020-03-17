@@ -9,8 +9,8 @@ Tematyką projektu jest aplikacja do nauki języków obcych w konkretnych katego
 Aplikacja zawiera takie funkcje jak:
 
 * Zakładanie kont. Role użytkowników nadaje odpowiedni kod rejestracyjny:
-        * Brak kodu: zwykły użytkownik
-        * Kod: nauczyciel lub administrator
+  - Brak kodu: zwykły użytkownik
+  - Kod: nauczyciel lub administrator
 * Możliwość wyłączenia konta (stanie się nieaktywne)
 * Nauka zestawów fiszek
 * Odsłuch wymowy (Google text-to-speech)
