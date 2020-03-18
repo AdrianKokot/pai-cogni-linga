@@ -77,6 +77,26 @@ Dodatkowa zakładka w aplikacji dostępna dla administratora:
 
 ![Zakładki dostępne dla administratora](dok3.png)
 
+### Zakładki
+
+![Zakładki](dok5.png)
+![Zakładki](dok6.png)
+
+* **_Panel aplikacji_** - główny panel dostępny po zalogowaniu. Zawarte są w nim:
+  * 3 najnowsze zestawy
+  * 3 ostatnio uczone zestawy (jeśli dostępne)
+  * 3 ulubione zestawy (jeśli dostępne)
+  * Spis kategorii
+  * Ranking ostatniego tygodnia
+  * Ranking globalny
+* **_Dodaj_** - tworzenie nowego zestawu
+* **_Szukaj_** - wyszukiwanie zestawu po słowach kluczowych
+* **_Moje fiszki_** - spis zestawów utworzonych przez użytkownika a także wszystkie ulubione i 3 ostatnio uczone zestawy
+* **_Wszystkie fiszki_** - wszystkie publiczne zestawy
+* **_Menedżer użytkowników_** - **dostępne tylko dla administratora** - możliwość dezaktywacji i aktywacji wszystkich użytkowników w aplikacji
+* **_Menedżer kategorii_** - **dostępne dla administratora i nauczyciela** - dodawanie kategorii, **tylko dla administratora** - usuwanie kategorii
+* **_Ustawienia_** - możliwość zmiany hasła oraz dezaktywacji konta
+
 ### Tryby nauki
 
 #### Fiszki
