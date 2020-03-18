@@ -80,6 +80,7 @@ Dodatkowa zakładka w aplikacji dostępna dla administratora:
 ### Zakładki
 
 ![Zakładki](dok5.png)
+
 ![Zakładki](dok6.png)
 
 * **_Panel aplikacji_** - główny panel dostępny po zalogowaniu. Zawarte są w nim:
