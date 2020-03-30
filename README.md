@@ -35,7 +35,7 @@ Role:
 
 Według założeń kod nauczycielski jest odbierany od administratora organizacji mającej zamiar używać aplikacji.
 
-### Możliwości poszczególnych ról użytkowniów
+### Możliwości poszczególnych ról użytkowników
 
 #### Użytkownik - '_Uczeń_'
 
@@ -120,7 +120,7 @@ Od lewej:
 
 ### Dodawanie zestawów
 
-Aby dodać zestaw nauki, trzeba dodać w nim conajmniej dwie pary pojęć. Inne wymagane pola to:
+Aby dodać zestaw nauki, trzeba dodać w nim co najmniej dwie pary pojęć. Inne wymagane pola to:
 
 * **_Nazwa zestawu_** (maksymalnie 48 znaków)
 * **_Opis zestawu_** (maksymalnie 255 znaków)
